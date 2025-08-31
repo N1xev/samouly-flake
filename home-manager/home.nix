@@ -6,7 +6,7 @@
 
   imports = [
       ../modules/home-manager/main.nix
-      # ./symlinks.nix
+      ./symlinks.nix
   ];
 
   # link the configuration file in current directory to the specified location in home directory
@@ -42,13 +42,6 @@
   # starship - an customizable prompt for any shell
   programs.starship = {
     enable = true;
-    # custom settings
-    settings = {
-      add_newline = true;
-      aws.disabled = true;
-      gcloud.disabled = true;
-      line_break.disabled = true;
-    };
   };
 
   programs.bash = {

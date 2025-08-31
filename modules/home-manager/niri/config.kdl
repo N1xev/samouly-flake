@@ -16,7 +16,7 @@ input {
 
             // For example:
              layout "us,ara"
-            options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+            options "grp: alt_shift_toggle,compose:ralt,ctrl:nocaps"
         }
 
         // Enable numlock on startup, omitting this setting disables it.
@@ -85,7 +85,7 @@ output "eDP-1" {
     mode "1920x1080@60.128"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 2
+    scale 1
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -164,7 +164,7 @@ layout {
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
         // Color of the ring on the active monitor.
-        active-color "#7fc8ff"
+        active-color "#133623ff"
 
         // Color of the ring on inactive monitors.
         inactive-color "#505050"
