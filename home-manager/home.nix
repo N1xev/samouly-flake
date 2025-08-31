@@ -5,7 +5,8 @@
   home.homeDirectory = "/home/samouly";
 
   imports = [
-    ./packages.nix
+      ../modules/home-manager/main.nix
+      # ./symlinks.nix
   ];
 
   # link the configuration file in current directory to the specified location in home directory
@@ -30,7 +31,6 @@
   };
 
   # Packages that should be installed to the user profile.
-  
 
   # basic configuration of git, please change to your own
   programs.git = {
@@ -50,8 +50,6 @@
       line_break.disabled = true;
     };
   };
-
-  
 
   programs.bash = {
     enable = true;

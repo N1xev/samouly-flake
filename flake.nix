@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+        niri-flake.url = "github:sodiboo/niri-flake";
   };
 
   outputs = { self, home-manager, nixpkgs, ... }@inputs:
@@ -23,11 +24,14 @@
       nixosConfigurations = {
         ${hostname} = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs username system hostname timezone; };
-          modules = [ ./hosts/samouly/configuration.nix ];
+          modules = [ 
+            ./nixos/configuration.nix
+            inputs.niri-flake.nixosModules.niri
+            ];
         };
       };
 
-      homeConfigurations.${username} =
+      homeConfigurations.${hostname} =
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [

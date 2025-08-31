@@ -2,10 +2,10 @@
 
 { 
   imports = [ 
-
+    ./niri.nix
     # System
     ./packages.nix
-    ../../hosts/samouly/hardware-configuration.nix 
+    ../../nixos/hardware-configuration.nix 
   ];
   
 }

@@ -20,6 +20,7 @@
     gawk
     zstd
     gnupg
+    swaybg
 
     # nix related
 
@@ -69,7 +70,7 @@
     ghostty
     wezterm
     git
-
+    fuzzel
     xwayland-satellite
   ];
 }
