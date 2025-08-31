@@ -73,15 +73,15 @@
     fuzzel
     xwayland-satellite
 
-
     # fonts
     nerd-fonts.fira-code
     nerd-fonts.geist-mono
     fira-code
     geist-font
 
-
     polkit_gnome
     obs-studio
+
+    inputs.zen-browser.packages."${system}".beta
   ];
 }

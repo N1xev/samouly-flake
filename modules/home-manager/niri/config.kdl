@@ -16,7 +16,7 @@ input {
 
             // For example:
              layout "us,ara"
-            options "grp: alt_shift_toggle,compose:ralt,ctrl:nocaps"
+            options "grp: alt_shift_toggle"
         }
 
         // Enable numlock on startup, omitting this setting disables it.
