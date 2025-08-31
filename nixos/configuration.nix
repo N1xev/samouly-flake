@@ -50,6 +50,13 @@
     variant = "";
   };
 
+  services.xserver.displayManager.importedVariables = [
+  "XDG_SESSION_TYPE"
+  "XDG_CURRENT_DESKTOP"
+  "XDG_SESSION_DESKTOP"
+];
+
+
   services.printing.enable = true;
 
   services.pulseaudio.enable = false;

@@ -4,10 +4,7 @@
   home.username = "samouly";
   home.homeDirectory = "/home/samouly";
 
-  imports = [
-      ../modules/home-manager/main.nix
-      ./symlinks.nix
-  ];
+  imports = [ ../modules/home-manager/main.nix ./symlinks.nix ];
 
   # link the configuration file in current directory to the specified location in home directory
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
@@ -40,8 +37,12 @@
   };
 
   # starship - an customizable prompt for any shell
-  programs.starship = {
+  programs.starship = { enable = true; };
+
+  xdg.portal = {
     enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config = { common = { default = [ "gtk" ]; }; };
   };
 
   programs.bash = {

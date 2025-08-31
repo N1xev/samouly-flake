@@ -82,5 +82,6 @@
 
 
     polkit_gnome
+    obs-studio
   ];
 }
