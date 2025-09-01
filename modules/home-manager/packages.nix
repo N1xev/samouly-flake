@@ -5,7 +5,7 @@
     # here is some command line tools I use frequently
     # feel free to add your own or remove some of them
 
-    fastfetch
+    nitch
     yazi # terminal file manager
 
     # utils
@@ -20,6 +20,10 @@
     gawk
     zstd
     gnupg
+
+    # sway stuff
+    swaynotificationcenter
+    swww
     swaybg
 
     # nix related
@@ -61,6 +65,9 @@
     cypress
     playwright-test
 
+    # python
+    python3Full
+
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     fish
     wget
@@ -80,8 +87,17 @@
     geist-font
 
     polkit_gnome
+    nwg-look
+    gcr
+
     obs-studio
 
     inputs.zen-browser.packages."${system}".beta
+    inputs.fabric.packages.${system}.default
+    # waybar
+    waybar
+    waybar-mpris
+    playerctl
+
   ];
 }

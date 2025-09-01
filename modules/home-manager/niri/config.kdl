@@ -1,13 +1,18 @@
-// This config is in the KDL format: https://kdl.dev
-// "/-" comments out the following node.
-// Check the wiki for a full description of the configuration:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
-// Input device configuration.
-// Find the full list of options on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+spawn-sh-at-startup "swaybg -i ~/Pictures/wallpaper.jpg -m fill &"
+spawn-at-startup "waybar"
+spawn-at-startup "/run/current-system/sw/libexec/polkit-gnome-authentication-agent-1"
 
-spawn-sh-at-startup "swaybg -i ~/Pictures/wallpaper.jpg"
+cursor {
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 25
+
+    hide-when-typing
+    hide-after-inactive-ms 3000
+}
+
+
+
 input {
     keyboard {
         xkb {
@@ -16,12 +21,14 @@ input {
 
             // For example:
              layout "us,ara"
-            options "grp: alt_shift_toggle"
+            options "grp:alt_shift_toggle"
         }
 
         // Enable numlock on startup, omitting this setting disables it.
         numlock
     }
+
+    
 
     // Next sections include libinput settings.
     // Omitting settings disables them, or leaves them at their default values.
@@ -65,57 +72,19 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-// The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
-// Remember to uncomment the node by removing "/-"!
-
 output "eDP-1" {
-    // Uncomment this line to disable this output.
-    // off
-
-    // Resolution and, optionally, refresh rate of the output.
-    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
-    // If the refresh rate is omitted, niri will pick the highest refresh rate
-    // for the resolution.
-    // If the mode is omitted altogether or is invalid, niri will pick one automatically.
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
     mode "1920x1080@60.128"
-
-    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1
 
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
     transform "normal"
 
-    // Position of the output in the global coordinate space.
-    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
-    // The cursor can only move between directly adjacent outputs.
-    // Output scale and rotation has to be taken into account for positioning:
-    // outputs are sized in logical, or scaled, pixels.
-    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
-    // so to put another output directly adjacent to it on the right, set its x to 1920.
-    // If the position is unset or results in an overlap, the output is instead placed
-    // automatically.
     position x=1280 y=0
 }
 
-// Settings that influence how windows are positioned and sized.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 16
+    gaps 25
 
-    // When to center a column when changing focus, options are:
-    // - "never", default behavior, focusing an off-screen column will keep at the left
-    //   or right edge of the screen.
-    // - "always", the focused column will always be centered.
-    // - "on-overflow", focusing a column will center it if it doesn't fit
-    //   together with the previously focused column.
     center-focused-column "never"
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
@@ -153,7 +122,7 @@ layout {
     // You can change how the focus ring looks.
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        // off
+        off
 
         // How many logical pixels the ring extends out from the windows.
         width 4
@@ -164,10 +133,10 @@ layout {
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
         // Color of the ring on the active monitor.
-        active-color "#133623ff"
-
+        active-gradient from="#133623ff" to="#cdddccff" angle=45 relative-to="workspace-view"
+        
         // Color of the ring on inactive monitors.
-        inactive-color "#505050"
+        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
 
         // You can also use gradients. They take precedence over solid colors.
         // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
@@ -189,11 +158,19 @@ layout {
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-        off
+        // off
 
         width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
+         // Color of the ring on the active monitor.
+active-gradient from="#0a102ab4" to="#143314ff" angle=275 relative-to="workspace-view"
+
+// Alternative active gradient (more vibrant)
+// active-gradient from="#0f3a0fe6" to="#2a5a2aff" angle=275 relative-to="workspace-view"
+
+// Color of the ring on inactive monitors  
+// Muted forest tones for subtle distinction
+inactive-gradient from="#3a4a3ac7" to="#5a6a5aab" angle=45 relative-to="workspace-view"
+
 
         // Color of the border around windows that request your attention.
         urgent-color "#9b0000"
@@ -205,7 +182,7 @@ layout {
     // You can enable drop shadows for windows.
     shadow {
         // Uncomment the next line to enable shadows.
-        // on
+         on
 
         // By default, the shadow draws only around its window, and not behind it.
         // Uncomment this setting to make the shadow draw behind its window.
@@ -230,7 +207,7 @@ layout {
         softness 30
 
         // Spread expands the shadow.
-        spread 5
+        spread 3
 
         // Offset moves the shadow relative to the window.
         offset x=0 y=5
@@ -291,13 +268,18 @@ animations {
 
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
+
 window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
+          opacity 0.85
+      draw-border-with-background false
+
 }
+
+layer-rule {
+  match namespace="^wallpaper$"
+  place-within-backdrop false
+}
+
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {

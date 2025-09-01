@@ -1,0 +1,19 @@
+# You can preview the config here
+ 
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = true
+window-save-state = always
+window-theme = system
+window-decoration = none
+window-padding-balance = true
+background = #171D17
+foreground = #AAC7A4
+selection-background = #3F5144
+selection-foreground = #649B6B
+cursor-style = bar
+cursor-style-blink = true
+mouse-shift-capture = true
+focus-follows-mouse = true
+gtk-titlebar = false
+linux-cgroup-memory-limit = 118

@@ -5,12 +5,11 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../modules/nixos/main.nix
-      ./cachix.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../modules/nixos/main.nix
+    ./cachix.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -50,12 +49,9 @@
     variant = "";
   };
 
-  services.xserver.displayManager.importedVariables = [
-  "XDG_SESSION_TYPE"
-  "XDG_CURRENT_DESKTOP"
-  "XDG_SESSION_DESKTOP"
-];
-
+  services.xserver.displayManager.importedVariables =
+    [ "XDG_SESSION_TYPE" "XDG_CURRENT_DESKTOP" "XDG_SESSION_DESKTOP" ];
+  security.pam.services.gdm.enableGnomeKeyring = true;
 
   services.printing.enable = true;
 
@@ -69,25 +65,20 @@
     jack.enable = true;
   };
 
-    users.users.samouly = {
+  users.users.samouly = {
     isNormalUser = true;
     description = "Alaa Elsamouly";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+    packages = with pkgs;
+      [
+        #  thunderbird
+      ];
   };
-
-  # Install firefox.
-  programs.firefox.enable = true;
-  
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-  };
+  nix.settings = { experimental-features = [ "nix-command" "flakes" ]; };
 
   system.stateVersion = "25.05"; # Did you read the comment?
 }

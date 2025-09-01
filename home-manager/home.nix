@@ -23,10 +23,34 @@
 
   # set cursor size and dpi for 4k monitor
   xresources.properties = {
-    "Xcursor.size" = 16;
+    "Xcursor.theme" = "Bibata-Modern-Ice";
+    "Xcursor.size" = 25;
     "Xft.dpi" = 172;
   };
 
+  
+  home.pointerCursor = {
+    # This enables cursor configuration for both X11 and GTK.
+    x11.enable = true;
+    gtk.enable = true;
+
+    # Set the cursor theme name.
+    name = "Bibata-Modern-Ice";
+
+    # Set the size to match your Xresources setting.
+    size = 25;
+
+    # Specify the package that provides the cursor theme.
+    package = pkgs.bibata-cursors;
+  };
+
+   gtk = {
+    enable = true;
+    cursorTheme = {
+      name = "Bibata-Ice";
+      package = pkgs.bibata-cursors;
+    };
+  };
   # Packages that should be installed to the user profile.
 
   # basic configuration of git, please change to your own
@@ -39,11 +63,6 @@
   # starship - an customizable prompt for any shell
   programs.starship = { enable = true; };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config = { common = { default = [ "gtk" ]; }; };
-  };
 
   programs.bash = {
     enable = true;
@@ -56,6 +75,14 @@
     # set some aliases, feel free to add more or remove some
     shellAliases = { k = "kubectl"; };
   };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config = { common = { default = [ "gtk" ]; }; };
+  };
+
+  services.gnome-keyring.enable = true;
 
   home.stateVersion = "25.05";
 }
