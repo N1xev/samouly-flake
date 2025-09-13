@@ -106,6 +106,9 @@
 
     inputs.zen-browser.packages."${system}".beta
     inputs.fabric.packages.${system}.default
+    # Aylur's projects
+    inputs.ags.packages.${system}.default
+    inputs.astal.packages.${system}.default
     # waybar
     waybar
     waybar-mpris

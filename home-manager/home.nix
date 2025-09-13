@@ -30,17 +30,13 @@
 
   
   home.pointerCursor = {
-    # This enables cursor configuration for both X11 and GTK.
     x11.enable = true;
     gtk.enable = true;
 
-    # Set the cursor theme name.
     name = "Bibata-Modern-Ice";
 
-    # Set the size to match your Xresources setting.
     size = 25;
 
-    # Specify the package that provides the cursor theme.
     package = pkgs.bibata-cursors;
   };
 
