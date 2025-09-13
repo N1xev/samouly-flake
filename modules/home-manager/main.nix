@@ -8,6 +8,7 @@
   ];
 
   # Session Variables
+  
   home.sessionVariables = {
     EDITOR = "nvim";
     SHELL = "fish";

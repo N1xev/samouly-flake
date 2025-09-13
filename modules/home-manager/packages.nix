@@ -39,6 +39,7 @@
     btop # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
+    fuzzel
 
     # system call monitoring
     strace # system call monitoring
@@ -54,9 +55,25 @@
     usbutils # lsusb
 
     # developement
+    # ide & text editors
+    neovim
+    vscode
+    ghostty
+    wezterm
+    git
+    
+
     ## golang
     go
     gopls
+
+    ## rust dev
+    rustc
+    cargo
+
+    ## C & c++ dev
+    cmake
+    gcc
 
     ## web dev
     vercel-pkg
@@ -73,11 +90,6 @@
     wget
     discord
     vesktop
-    vscode
-    ghostty
-    wezterm
-    git
-    fuzzel
     xwayland-satellite
 
     # fonts
@@ -98,6 +110,8 @@
     waybar
     waybar-mpris
     playerctl
+
+    gemini-cli
 
   ];
 }
