@@ -16,9 +16,10 @@
       url = "github:Fabric-Development/fabric";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, home-manager, nixpkgs, ... }@inputs:
+  outputs = { self, home-manager, nixpkgs, ags, astal, ... }@inputs:
     let
       system = "x86_64-linux";
       username = "samouly";
@@ -29,11 +30,17 @@
         config.allowUnfree = true;
       };
     in {
+ 
       nixosConfigurations = {
         ${hostname} = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs username system hostname timezone; };
-          modules =
-            [ ./nixos/configuration.nix inputs.niri-flake.nixosModules.niri ];
+          modules = [
+            ./nixos/configuration.nix
+            inputs.hyprland.nixosModules.default
+            inputs.niri-flake.nixosModules.niri
+          ];
+          packages = [ inputs.fabric.packages.x86_64-linux.default ];
+
         };
       };
 
@@ -43,8 +50,9 @@
           modules = [
             ./home-manager/home.nix
             inputs.spicetify-nix.homeManagerModules.default
+            inputs.hyprland.homeManagerModules.default
           ];
-          extraSpecialArgs = { inherit inputs username system; };
+          extraSpecialArgs = { inherit inputs username ags astal system; };
         };
     };
 }

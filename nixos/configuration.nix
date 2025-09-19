@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -42,6 +42,7 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
 
   # Configure keymap in X11
   services.xserver.xkb = {

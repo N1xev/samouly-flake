@@ -5,6 +5,8 @@
     ./packages.nix
     # other imports goes here
     ./spotify.nix
+    ./hyprland.nix
+    ./ags.nix
   ];
 
   # Session Variables

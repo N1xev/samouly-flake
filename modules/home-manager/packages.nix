@@ -61,7 +61,6 @@
     ghostty
     wezterm
     git
-    
 
     ## golang
     go
@@ -83,7 +82,6 @@
     playwright-test
 
     # python
-    python3Full
 
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     fish
@@ -106,15 +104,21 @@
 
     inputs.zen-browser.packages."${system}".beta
     inputs.fabric.packages.${system}.default
+    inputs.fabric.packages.${system}.run-widget
+
     # Aylur's projects
-    inputs.ags.packages.${system}.default
-    inputs.astal.packages.${system}.default
+    # inputs.ags.packages.${system}.default
+    # inputs.astal.packages.${system}.default
     # waybar
     waybar
     waybar-mpris
     playerctl
 
     gemini-cli
-
+    direnv
+    google-chrome
+    matugen
+    uwsm
+    dbus
   ];
 }

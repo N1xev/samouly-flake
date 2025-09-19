@@ -28,7 +28,6 @@
     "Xft.dpi" = 172;
   };
 
-  
   home.pointerCursor = {
     x11.enable = true;
     gtk.enable = true;
@@ -40,7 +39,7 @@
     package = pkgs.bibata-cursors;
   };
 
-   gtk = {
+  gtk = {
     enable = true;
     cursorTheme = {
       name = "Bibata-Ice";
@@ -58,7 +57,6 @@
 
   # starship - an customizable prompt for any shell
   programs.starship = { enable = true; };
-
 
   programs.bash = {
     enable = true;
