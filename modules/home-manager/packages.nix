@@ -1,124 +1,128 @@
 { pkgs, inputs, system, ... }:
 
 {
-  home.packages = with pkgs; [
-    # here is some command line tools I use frequently
-    # feel free to add your own or remove some of them
+home.packages = with pkgs; [
 
-    nitch
-    yazi # terminal file manager
+  # ------------------------
+  # Command-line utilities
+  # ------------------------
+  nitch
+  yazi                 # terminal file manager
+  fzf                  # fuzzy finder
+  file
+  which
+  tree
+  gnused
+  gnutar
+  gawk
+  zstd
+  gnupg
 
-    # utils
-    fzf # A command-line fuzzy finder
+  # ------------------------
+  # System monitoring & tools
+  # ------------------------
+  btop                 # replacement of htop/nmon
+  iotop                # IO monitoring
+  iftop                # network monitoring
+  strace               # system call monitoring
+  ltrace               # library call monitoring
+  lsof                 # list open files
+  sysstat
+  lm_sensors           # sensors
+  ethtool
+  pciutils             # lspci
+  usbutils             # lsusb
 
-    # misc
-    file
-    which
-    tree
-    gnused
-    gnutar
-    gawk
-    zstd
-    gnupg
+  # ------------------------
+  # Sway / Wayland utilities
+  # ------------------------
+  swaynotificationcenter
+  swww
+  swaybg
+  fuzzel
+  waybar
+  waybar-mpris
+  playerctl
+  xwayland-satellite
+  uwsm
+  dbus
 
-    # sway stuff
-    swaynotificationcenter
-    swww
-    swaybg
+  # ------------------------
+  # Nix utilities
+  # ------------------------
+  nixfmt-classic
+  nix-output-monitor
+  direnv
 
-    # nix related
+  # ------------------------
+  # Productivity / docs
+  # ------------------------
+  hugo                 # static site generator
+  glow                 # markdown previewer
+  vhs
+  freeze
+  gemini-cli
+  matugen
 
-    nixfmt-classic
-    nix-output-monitor
+  # ------------------------
+  # Development tools
+  # ------------------------
+  git
+  neovim
+  vscode
+  ghostty
+  wezterm
+  vim                  # fallback editor
+  fish
+  wget
 
-    # productivity
-    hugo # static site generator
-    glow # markdown previewer in terminal
-    vhs
-    freeze
-    btop # replacement of htop/nmon
-    iotop # io monitoring
-    iftop # network monitoring
-    fuzzel
+  # Go
+  go
+  gopls
 
-    # system call monitoring
-    strace # system call monitoring
-    ltrace # library call monitoring
-    lsof # list open files
-    kubectl
+  # Rust
+  rustc
+  cargo
 
-    # system tools
-    sysstat
-    lm_sensors # for `sensors` command
-    ethtool
-    pciutils # lspci
-    usbutils # lsusb
+  # C / C++
+  cmake
+  gcc
 
-    # developement
-    # ide & text editors
-    neovim
-    vscode
-    ghostty
-    wezterm
-    git
+  # Web dev
+  vercel-pkg
+  nodejs
+  bun
+  cypress
+  playwright-test
 
-    ## golang
-    go
-    gopls
+  # ------------------------
+  # Fonts & theming
+  # ------------------------
+  nerd-fonts.fira-code
+  nerd-fonts.geist-mono
+  fira-code
+  geist-font
+  nwg-look
+  gcr
+  polkit_gnome
 
-    ## rust dev
-    rustc
-    cargo
+  # ------------------------
+  # Multimedia & streaming
+  # ------------------------
+  obs-studio
 
-    ## C & c++ dev
-    cmake
-    gcc
+  # ------------------------
+  # Communication
+  # ------------------------
+  discord
+  vesktop
+  google-chrome
 
-    ## web dev
-    vercel-pkg
-    nodejs
-    bun
-    cypress
-    playwright-test
-
-    # python
-
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    fish
-    wget
-    discord
-    vesktop
-    xwayland-satellite
-
-    # fonts
-    nerd-fonts.fira-code
-    nerd-fonts.geist-mono
-    fira-code
-    geist-font
-
-    polkit_gnome
-    nwg-look
-    gcr
-
-    obs-studio
-
-    inputs.zen-browser.packages."${system}".beta
-    inputs.fabric.packages.${system}.default
-    inputs.fabric.packages.${system}.run-widget
-
-    # Aylur's projects
-    # inputs.ags.packages.${system}.default
-    # inputs.astal.packages.${system}.default
-    # waybar
-    waybar
-    waybar-mpris
-    playerctl
-
-    gemini-cli
-    direnv
-    google-chrome
-    matugen
-    uwsm
-    dbus
-  ];
+  # ------------------------
+  # Inputs (flakes)
+  # ------------------------
+  inputs.zen-browser.packages."${system}".beta
+  inputs.fabric.packages.${system}.default
+  inputs.fabric.packages.${system}.run-widget
+];
 }
