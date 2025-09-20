@@ -9,7 +9,7 @@
       font.size = 15;
       popToRootOnClose = false;
       rootSearch.searchFiles = true;
-      theme.name = "tokyo-night";
+      theme.name = "vicinae-dark";
       window = {
         csd = true;
         opacity = 1;

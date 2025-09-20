@@ -49,6 +49,7 @@
     wayland
     wayland-protocols
     wayland-scanner
+    brightnessctl
     # ------------------------
     # Nix utilities
     # ------------------------
