@@ -6,8 +6,11 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     niri-flake.url = "github:sodiboo/niri-flake";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    ags.url = "github:aylur/ags";
-    astal.url = "github:aylur/astal";
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    vicinae.url = "github:vicinaehq/vicinae";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +22,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, home-manager, nixpkgs, ags, astal, ... }@inputs:
+  outputs = { self, home-manager, nixpkgs, vicinae, quickshell, ... }@inputs:
     let
       system = "x86_64-linux";
       username = "samouly";
@@ -39,8 +42,6 @@
             inputs.hyprland.nixosModules.default
             inputs.niri-flake.nixosModules.niri
           ];
-          packages = [ inputs.fabric.packages.x86_64-linux.default ];
-
         };
       };
 
@@ -51,8 +52,9 @@
             ./home-manager/home.nix
             inputs.spicetify-nix.homeManagerModules.default
             inputs.hyprland.homeManagerModules.default
+            vicinae.homeManagerModules.default
           ];
-          extraSpecialArgs = { inherit inputs username ags astal system; };
+          extraSpecialArgs = { inherit inputs username quickshell system; };
         };
     };
 }

@@ -21,6 +21,22 @@
   #     xxx
   # '';
 
+  nixpkgs.overlays = [
+      (final: prev: {
+        material-symbols = prev.material-symbols.overrideAttrs (oldAttrs: {
+          version = "4.0.0-unstable-2025-04-11";
+
+          src = final.fetchFromGitHub {
+            owner = "google";
+            repo = "material-design-icons";
+            rev = "941fa95d7f6084a599a54ca71bc565f48e7c6d9e";
+            hash = "sha256-5bcEh7Oetd2JmFEPCcoweDrLGQTpcuaCU8hCjz8ls3M=";
+            sparseCheckout = [ "variablefont" ];
+          };
+        });
+      })
+    ];
+
   # set cursor size and dpi for 4k monitor
   xresources.properties = {
     "Xcursor.theme" = "Bibata-Modern-Ice";
@@ -48,7 +64,6 @@
   };
   # Packages that should be installed to the user profile.
 
-  # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
     userName = "N1xev";
@@ -61,12 +76,9 @@
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    # TODO add your custom bashrc here
     bashrcExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
     '';
-
-    # set some aliases, feel free to add more or remove some
     shellAliases = { k = "kubectl"; };
   };
 

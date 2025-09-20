@@ -6,7 +6,8 @@
     # other imports goes here
     ./spotify.nix
     ./hyprland.nix
-    ./ags.nix
+    ./widgetFrameworks.nix
+    ./vicinae.nix
   ];
 
   # Session Variables
