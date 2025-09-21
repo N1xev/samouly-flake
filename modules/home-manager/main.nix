@@ -7,7 +7,8 @@
     ./spotify.nix
     ./hyprland.nix
     ./widgetFrameworks.nix
-    ./vicinae.nix
+    ./programs.nix
+    # ./vicinae.nix
   ];
 
   # Session Variables

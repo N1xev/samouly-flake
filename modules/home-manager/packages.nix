@@ -31,6 +31,16 @@
     procps # For CPU/memory stats (bar dependency)
     iw # WiFi configuration tool (replacement for wireless-tools)
     wirelesstools # Alternative WiFi tools
+    khal
+    libnotify
+    lutris
+    heroic
+    bottles
+    mangohud
+    goverlay
+    protontricks
+    protonup-qt
+
     # ------------------------
     # Sway / Wayland utilities
     # ------------------------
@@ -50,12 +60,14 @@
     wayland-protocols
     wayland-scanner
     brightnessctl
+    
     # ------------------------
     # Nix utilities
     # ------------------------
     nixfmt-classic
     nix-output-monitor
     direnv
+
     # ------------------------
     # Productivity / docs
     # ------------------------
@@ -137,40 +149,7 @@
     inputs.zen-browser.packages."${system}".beta
     inputs.fabric.packages.${system}.default
     inputs.fabric.packages.${system}.run-widget
+    inputs.dms-cli.packages.${pkgs.system}.default
+    inputs.dgop.packages.${pkgs.system}.default
   ];
-
-  # Set environment variables for pkg-config
-  home.sessionVariables = {
-    PKG_CONFIG_PATH = lib.concatStringsSep ":" [
-      "${pkgs.glib.dev}/lib/pkgconfig"
-      "${pkgs.cairo.dev}/lib/pkgconfig"
-      "${pkgs.gtk4.dev}/lib/pkgconfig"
-      "${pkgs.gdk-pixbuf.dev}/lib/pkgconfig"
-      "${pkgs.gobject-introspection.dev}/lib/pkgconfig"
-      "${pkgs.atk.dev}/lib/pkgconfig"
-      "${pkgs.pango.dev}/lib/pkgconfig"
-      "${pkgs.wayland.dev}/lib/pkgconfig"
-    ];
-
-    LD_LIBRARY_PATH = lib.concatStringsSep ":" [
-      "${pkgs.glib}/lib"
-      "${pkgs.cairo}/lib"
-      "${pkgs.gtk4}/lib"
-      "${pkgs.gdk-pixbuf}/lib"
-      "${pkgs.gobject-introspection}/lib"
-      "${pkgs.atk}/lib"
-      "${pkgs.pango}/lib"
-      "${pkgs.wayland}/lib"
-    ];
-
-    GI_TYPELIB_PATH = lib.concatStringsSep ":" [
-      "${pkgs.gtk4}/lib/girepository-1.0"
-      "${pkgs.glib}/lib/girepository-1.0"
-      "${pkgs.gobject-introspection}/lib/girepository-1.0"
-      "${pkgs.gdk-pixbuf}/lib/girepository-1.0"
-      "${pkgs.cairo}/lib/girepository-1.0"
-      "${pkgs.atk}/lib/girepository-1.0"
-      "${pkgs.pango}/lib/girepository-1.0"
-    ];
-  };
 }

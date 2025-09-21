@@ -43,7 +43,6 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -79,7 +78,16 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings = { experimental-features = [ "nix-command" "flakes" ]; };
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+
+    http-connections = 50;
+
+    keep-outputs = true;
+    keep-derivations = true;
+
+  };
 
   system.stateVersion = "25.05"; # Did you read the comment?
 }

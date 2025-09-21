@@ -7,6 +7,7 @@
     # System
     ./packages.nix
     ../../nixos/hardware-configuration.nix 
+    ./nvidia.nix
   ];
   
 }

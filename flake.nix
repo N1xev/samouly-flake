@@ -20,9 +20,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    dms-cli = {
+      url = "github:AvengeMedia/danklinux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, home-manager, nixpkgs, vicinae, quickshell, ... }@inputs:
+  outputs =
+    { self, home-manager, nixpkgs, vicinae, quickshell, dgop, dms-cli, ... }@inputs:
     let
       system = "x86_64-linux";
       username = "samouly";
@@ -33,7 +43,7 @@
         config.allowUnfree = true;
       };
     in {
- 
+
       nixosConfigurations = {
         ${hostname} = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs username system hostname timezone; };

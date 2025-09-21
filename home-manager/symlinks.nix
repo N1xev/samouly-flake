@@ -13,5 +13,6 @@
   home.file = {
     "Pictures/wallpaper.jpg".source =
       ../modules/home-manager/niri/wallpaper.jpg;
+    "ghostty/colors".text = " ";
   };
 }

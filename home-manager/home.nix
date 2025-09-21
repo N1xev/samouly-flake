@@ -37,7 +37,8 @@
       })
     ];
 
-  # set cursor size and dpi for 4k monitor
+    fonts.fontconfig.enable = true;
+
   xresources.properties = {
     "Xcursor.theme" = "Bibata-Modern-Ice";
     "Xcursor.size" = 25;
@@ -78,6 +79,7 @@
     enableCompletion = true;
     bashrcExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+      export PATH="$PATH:$HOME/bin:$HOME/.bun/bin:$HOME/bun/bin"
     '';
     shellAliases = { k = "kubectl"; };
   };
