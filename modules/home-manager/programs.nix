@@ -112,4 +112,30 @@
       toggle_logging = "Shift_L+F2";
     };
   };
+
+  programs.gamemode = {
+    enable = true;
+    settings = {
+      general = {
+        renice = 10;
+        ioprio = 7;
+        inhibit_screensaver = 1;
+        softrealtime = "auto";
+      };
+
+      gpu = {
+        apply_gpu_optimisations = "accept-responsibility";
+        gpu_device = 0;
+      };
+    };
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
+  };
+
+  
 }
