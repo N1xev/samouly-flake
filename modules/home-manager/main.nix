@@ -8,7 +8,7 @@
     ./hyprland.nix
     ./widgetFrameworks.nix
     ./programs.nix
-    # ./vicinae.nix
+    ./vicinae.nix
   ];
 
   # Session Variables

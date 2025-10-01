@@ -1,10 +1,9 @@
 
-spawn-sh-at-startup "swaybg -i ~/Pictures/wallpaper.jpg -m fill &"
-// spawn-at-startup "waybar"
+// spawn-sh-at-startup "swaybg -i ~/Pictures/wallpaper.jpg -m fill &"
 spawn-at-startup "/run/current-system/sw/libexec/polkit-gnome-authentication-agent-1"
-spawn-at-startup "qs" "-c" "~/.config/DMS"
-spawn-at-startup "vicinae serve"
-
+spawn-sh-at-startup "quickshell -c ~/.config/DMS &"
+spawn-sh-at-startup "vicinae server &"
+spawn-at-startup "legcord"
 cursor {
     xcursor-theme "Bibata-Modern-Ice"
     xcursor-size 25
@@ -25,9 +24,6 @@ input {
             layout "us,ara"
             options "grp:alt_shift_toggle"
         }
-
-        // Enable numlock on startup, omitting this setting disables it.
-        numlock
     }
 
     
@@ -87,6 +83,7 @@ layout {
     // Set gaps around windows in logical pixels.
     gaps 25
 
+  background-color "transparent"
     center-focused-column "never"
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
@@ -278,9 +275,15 @@ window-rule {
 }
 
 layer-rule {
-    match namespace="^wallpaper$"
+    match namespace="^quickshell$"
     place-within-backdrop true
 }
+
+// overview {
+//   workspace-shadow {
+//     off
+//   }
+// }
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
@@ -554,7 +557,7 @@ binds {
    Mod+Space hotkey-overlay-title="Application Launcher" {
       spawn "dms" "ipc" "call" "spotlight" "toggle";
    }
-   Mod+V hotkey-overlay-title="Clipboard Manager" {
+   Mod+Alt+V hotkey-overlay-title="Clipboard Manager" {
       spawn "dms" "ipc" "call" "clipboard" "toggle";
    }
    Mod+M hotkey-overlay-title="Task Manager" {
@@ -563,35 +566,35 @@ binds {
    Mod+N hotkey-overlay-title="Notification Center" {
       spawn "dms" "ipc" "call" "notifications" "toggle";
    }
-   Mod+Comma hotkey-overlay-title="Settings" {
+   Mod+Shift+Comma hotkey-overlay-title="Settings" {
       spawn "dms" "ipc" "call" "settings" "toggle";
    }
    Mod+P hotkey-overlay-title="Notepad" {
       spawn "dms" "ipc" "call" "notepad" "toggle";
    }
-   Super+Alt+L hotkey-overlay-title="Lock Screen" {
+   Super+L hotkey-overlay-title="Lock Screen" {
       spawn "dms" "ipc" "call" "lock" "lock";
    }
    Mod+X hotkey-overlay-title="Power Menu" {
       spawn "dms" "ipc" "call" "powermenu" "toggle";
    }
-   XF86AudioRaiseVolume allow-when-locked=true {
+   Alt+XF86AudioRaiseVolume allow-when-locked=true {
       spawn "dms" "ipc" "call" "audio" "increment" "3";
    }
-   XF86AudioLowerVolume allow-when-locked=true {
+   Alt+XF86AudioLowerVolume allow-when-locked=true {
       spawn "dms" "ipc" "call" "audio" "decrement" "3";
    }
-   XF86AudioMute allow-when-locked=true {
+   Alt+XF86AudioMute allow-when-locked=true {
       spawn "dms" "ipc" "call" "audio" "mute";
    }
-   XF86AudioMicMute allow-when-locked=true {
+   Alt+XF86AudioMicMute allow-when-locked=true {
       spawn "dms" "ipc" "call" "audio" "micmute";
    }
-   XF86MonBrightnessUp allow-when-locked=true {
+   Alt+XF86MonBrightnessUp allow-when-locked=true {
       spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
    }
    // You can override the default device for e.g. keyboards by adding the device name to the last param
-   XF86MonBrightnessDown allow-when-locked=true {
+   Alt+XF86MonBrightnessDown allow-when-locked=true {
       spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
    }
    // Night mode toggle

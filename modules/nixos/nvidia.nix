@@ -22,26 +22,30 @@
     ];
   };
 
+  # environment.sessionVariables = {
+  #   __GL_GSYNC_ALLOWED = "1";
+  #   __GL_VRR_ALLOWED = "1";
+  #   __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  #   LIBVA_DRIVER_NAME = "nvidia";
+  #   GBM_BACKEND = "nvidia-drm";
+  #   WLR_NO_HARDWARE_CURSORS = "1";
+  #   __GL_THREADED_OPTIMIZATIONS = "1";
+  #   __GL_SHADER_CACHE = "1";
+  # };
   environment.sessionVariables = {
-    __GL_GSYNC_ALLOWED = "1";
-    __GL_VRR_ALLOWED = "1";
+    # الأساسية لـ NVIDIA مع Wayland
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
-    WLR_NO_HARDWARE_CURSORS = "1";
-    __GL_THREADED_OPTIMIZATIONS = "1";
-    __GL_SHADER_CACHE = "1";
+
+    # لـ Wayland/Hyprland
+    XDG_SESSION_TYPE = "wayland";
   };
 
   environment.systemPackages = with pkgs; [
     nvtopPackages.full
     nvidia-system-monitor-qt
     gpu-viewer
-    steam-run
-    gamemode
-    gamescope
-    mpv
-    vlc
     vulkan-tools
     vulkan-loader
     vulkan-validation-layers

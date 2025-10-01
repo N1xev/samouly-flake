@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
 
   programs.fish = {
     enable = true;
@@ -19,24 +19,21 @@
 
       "steam-gaming" = "gamemoderun steam";
       "check-vulkan" = "vulkaninfo --summary";
+      "hms" = "home-manager switch --flake ~/Projects/flakey/#$USER";
+      "nrs" = "sudo nixos-rebuild switch --flake ~/Projects/flakey/#$hostname";
     };
 
     interactiveShellInit = ''
       set -gx MANGOHUD 1
       set -gx DXVK_HUD fps,memory,gpuload
       set -gx PROTON_ENABLE_NVAPI 1
-
+      set -g fish_greeting ""
       set -gx __GL_THREADED_OPTIMIZATIONS 1
       set -gx __GL_SHADER_CACHE 1
       set -gx __GLX_VENDOR_LIBRARY_NAME nvidia
       set -gx LIBVA_DRIVER_NAME nvidia
       set -gx GBM_BACKEND nvidia-drm
-
-      if status is-interactive
-          echo "Gaming environment loaded!"
-          echo "GPU: RTX Quadro 3000"
-          echo "Use 'gpu-info' to check status"
-      end
+      starship init fish | source
     '';
 
     functions = {
@@ -113,29 +110,28 @@
     };
   };
 
-  programs.gamemode = {
-    enable = true;
-    settings = {
-      general = {
-        renice = 10;
-        ioprio = 7;
-        inhibit_screensaver = 1;
-        softrealtime = "auto";
-      };
+  # programs.gamemode = {
+  #   enable = true;
+  #   settings = {
+  #     general = {
+  #       renice = 10;
+  #       ioprio = 7;
+  #       inhibit_screensaver = 1;
+  #       softrealtime = "auto";
+  #     };
 
-      gpu = {
-        apply_gpu_optimisations = "accept-responsibility";
-        gpu_device = 0;
-      };
-    };
-  };
+  #     gpu = {
+  #       apply_gpu_optimisations = "accept-responsibility";
+  #       gpu_device = 0;
+  #     };
+  #   };
+  # };
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    gamescopeSession.enable = true;
-  };
+  # programs.steam = {
+  #   enable = true;
+  #   remotePlay.openFirewall = true;
+  #   dedicatedServer.openFirewall = true;
+  #   gamescopeSession.enable = true;
+  # };
 
-  
 }

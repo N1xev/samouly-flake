@@ -4,8 +4,8 @@
     # Command-line utilities
     # ------------------------
     nitch
-    yazi # terminal file manager
-    fzf # fuzzy finder
+    yazi
+    fzf
     file
     which
     tree
@@ -17,20 +17,20 @@
     # ------------------------
     # System monitoring & tools
     # ------------------------
-    btop # replacement of htop/nmon
-    iotop # IO monitoring
-    iftop # network monitoring
-    strace # system call monitoring
-    ltrace # library call monitoring
-    lsof # list open files
+    btop
+    iotop
+    iftop
+    strace
+    ltrace
+    lsof
     sysstat
-    lm_sensors # sensors
+    lm_sensors
     ethtool
-    pciutils # lspci
-    usbutils # lsusb
-    procps # For CPU/memory stats (bar dependency)
-    iw # WiFi configuration tool (replacement for wireless-tools)
-    wirelesstools # Alternative WiFi tools
+    pciutils
+    usbutils
+    procps
+    iw
+    wirelesstools
     khal
     libnotify
     lutris
@@ -40,6 +40,12 @@
     goverlay
     protontricks
     protonup-qt
+    steam-run
+    steam
+    gamemode
+    gamescope
+    mpv
+    vlc
 
     # ------------------------
     # Sway / Wayland utilities
@@ -55,12 +61,12 @@
     uwsm
     dbus
     gtk4
-    gtk4-layer-shell # For wayland layer shell support (bar dependency)
+    gtk4-layer-shell
     wayland
     wayland-protocols
     wayland-scanner
     brightnessctl
-    
+    cliphist
     # ------------------------
     # Nix utilities
     # ------------------------
@@ -78,6 +84,7 @@
     gemini-cli
     matugen
     obsidian
+    blender
 
     # ------------------------
     # Development tools
@@ -90,7 +97,7 @@
     vim # fallback editor
     fish
     wget
-    pkg-config # For finding libraries (bar dependency)
+    pkg-config
     # Go
     go
     gopls
@@ -100,6 +107,7 @@
     # C / C++
     cmake
     gcc
+    clang-tools
     # Web dev
     vercel-pkg
     nodejs
@@ -121,6 +129,13 @@
     pango.dev
     wayland.dev
     gammastep
+    fluent-gtk-theme
+    colloid-gtk-theme
+    tela-circle-icon-theme
+    whitesur-icon-theme
+    # tau-hydrogen
+    flameshot
+    ventoy-full-gtk
 
     # ------------------------
     # Fonts & theming
@@ -142,6 +157,7 @@
     # Communication
     # ------------------------
     legcord
+    discord
     google-chrome
     # ------------------------
     # Inputs (flakes)
