@@ -1,19 +1,38 @@
-# You can preview the config here
- 
-clipboard-read = allow
-clipboard-write = allow
-copy-on-select = true
-window-save-state = always
-window-theme = system
-window-decoration = none
+palette = 0=#ecb5ec
+palette = 1=#d8bfd5
+palette = 2=#ecb5ec
+palette = 3=#ecb5ec
+palette = 4=#ecb5ec
+palette = 5=#efe4eb
+palette = 6=#825485
+palette = 7=#725e71
+palette = 8=#d8bfd5
+palette = 9=#d8bfd5
+palette = 10=#171216
+palette = 11=#d8bfd5
+palette = 12=#efe4eb
+palette = 13=#d8bfd5
+palette = 14=#825485
+palette = 15=#ecb5ec
+
+background = #171216
+foreground = #efe4eb
+cursor-color = #ecb5ec
+selection-background = #efe4eb
+selection-foreground = #171216
+
+font-family = "Geist Mono"
+# font-size = 12
+window-decoration = true
+command = fish
 window-padding-balance = true
-background = #171D17
-foreground = #AAC7A4
-selection-background = #3F5144
-selection-foreground = #649B6B
-cursor-style = bar
-cursor-style-blink = true
-mouse-shift-capture = true
-focus-follows-mouse = true
-gtk-titlebar = false
-linux-cgroup-memory-limit = 118
+window-padding-x = 10
+window-padding-y = 10
+font-style-bold = true
+font-style = Bold
+keybind = ctrl+shift+w=new_split:up
+keybind = ctrl+shift+s=new_split:down
+keybind = ctrl+shift+d=new_split:right
+keybind = ctrl+shift+a=new_split:left
+keybind = ctrl+shift+n=new_tab
+keybind = ctrl+alt+n=new_window
