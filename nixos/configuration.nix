@@ -34,7 +34,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
+  nixpkgs.config.permittedInsecurePackages = [ "ventoy-gtk3-1.1.05" ];
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -83,6 +83,12 @@
     keep-outputs = true;
     keep-derivations = true;
 
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
 
   system.stateVersion = "25.05"; # Did you read the comment?
