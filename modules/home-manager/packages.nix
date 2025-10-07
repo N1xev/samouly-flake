@@ -50,11 +50,12 @@
     # ------------------------
     # Sway / Wayland utilities
     # ------------------------
-    swaynotificationcenter
     swww
     swaybg
     fuzzel
+    swaylock
     waybar
+    wl-clipboard
     waybar-mpris
     playerctl
     xwayland-satellite
@@ -85,6 +86,7 @@
     matugen
     obsidian
     blender
+    kdePackages.dolphin
 
     # ------------------------
     # Development tools
@@ -135,7 +137,6 @@
     whitesur-icon-theme
     # tau-hydrogen
     flameshot
-    ventoy-full-gtk
 
     # ------------------------
     # Fonts & theming
@@ -153,12 +154,14 @@
     # Multimedia & streaming
     # ------------------------
     obs-studio
+    xdg-desktop-portal-gnome
     # ------------------------
     # Communication
     # ------------------------
     legcord
     discord
     google-chrome
+    brave
     # ------------------------
     # Inputs (flakes)
     # ------------------------

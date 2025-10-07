@@ -11,8 +11,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   networking.hostName = "nixos";
 
   networking.networkmanager.enable = true;
@@ -34,7 +32,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  nixpkgs.config.permittedInsecurePackages = [ "ventoy-gtk3-1.1.05" ];
+  nixpkgs.config.permittedInsecurePackages = [ "ventoy-full-gtk3" ];
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;

@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {

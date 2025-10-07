@@ -33,6 +33,14 @@
       set -gx __GLX_VENDOR_LIBRARY_NAME nvidia
       set -gx LIBVA_DRIVER_NAME nvidia
       set -gx GBM_BACKEND nvidia-drm
+      set completion_dir $HOME/.config/fish/completions
+      if test -d $completion_dir
+        for file in $completion_dir/*.fish
+            if test -f $file
+                source $file
+            end
+        end
+      end
       starship init fish | source
     '';
 
