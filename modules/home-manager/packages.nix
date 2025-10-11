@@ -14,6 +14,7 @@
     gawk
     zstd
     gnupg
+    ntfs3g
     # ------------------------
     # System monitoring & tools
     # ------------------------
@@ -56,6 +57,8 @@
     swaylock
     waybar
     wl-clipboard
+    wl-screenrec
+    xdg-desktop-portal-wlr
     waybar-mpris
     playerctl
     xwayland-satellite
@@ -94,6 +97,9 @@
     git
     neovim
     vscode
+    jetbrains.webstorm
+    code-cursor
+    zed-editor-fhs
     ghostty
     wezterm
     vim # fallback editor
@@ -143,6 +149,7 @@
     # ------------------------
     nerd-fonts.fira-code
     nerd-fonts.geist-mono
+    nerd-fonts.jetbrains-mono
     fira-code
     geist-font
     nwg-look
@@ -150,6 +157,9 @@
     polkit_gnome
     inter
     material-symbols
+    comic-mono
+    monaspace
+    
     # ------------------------
     # Multimedia & streaming
     # ------------------------
@@ -168,7 +178,7 @@
     inputs.zen-browser.packages."${system}".beta
     inputs.fabric.packages.${system}.default
     inputs.fabric.packages.${system}.run-widget
-    inputs.dms-cli.packages.${pkgs.system}.default
+    # inputs.dms-cli.packages.${pkgs.system}.default
     inputs.dgop.packages.${pkgs.system}.default
   ];
 }

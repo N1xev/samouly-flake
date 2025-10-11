@@ -189,7 +189,7 @@ style = "bg:#18512b fg:#b4f1bd"
 format = '[$symbol](bg:#18512b fg:#99d4a3)[ ($version) ]($style)'
 
 [bun]
-symbol = "󰅟"
+symbol = ""
 style = "bg:#18512b fg:#b4f1bd"
 format = '[$symbol](bg:#18512b fg:#99d4a3)[ ($version) ]($style)'
 

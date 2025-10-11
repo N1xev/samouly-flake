@@ -21,21 +21,12 @@
   #     xxx
   # '';
 
-  nixpkgs.overlays = [
-      (final: prev: {
-        material-symbols = prev.material-symbols.overrideAttrs (oldAttrs: {
-          version = "4.0.0-unstable-2025-04-11";
+nixpkgs.overlays = [
+  (import ../overlays/vscode.nix)
+  (import ../overlays/cursor.nix)
+  (import ../overlays/material-icons.nix)
+];
 
-          src = final.fetchFromGitHub {
-            owner = "google";
-            repo = "material-design-icons";
-            rev = "941fa95d7f6084a599a54ca71bc565f48e7c6d9e";
-            hash = "sha256-5bcEh7Oetd2JmFEPCcoweDrLGQTpcuaCU8hCjz8ls3M=";
-            sparseCheckout = [ "variablefont" ];
-          };
-        });
-      })
-    ];
 
     fonts.fontconfig.enable = true;
 
@@ -63,7 +54,6 @@
       package = pkgs.bibata-cursors;
     };
   };
-  # Packages that should be installed to the user profile.
 
   programs.git = {
     enable = true;
@@ -89,6 +79,23 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config = { common = { default = [ "gtk" ]; }; };
   };
+# systemd.user.services.polkit-gnome-authentication-agent-1 = {
+#   Unit = {
+#     Description = "polkit-gnome-authentication-agent-1";
+#     Wants = [ "graphical-session.target" ];
+#     After = [ "graphical-session.target" ];
+#   };
+#   Service = {
+#     Type = "simple";
+#     ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+#     Restart = "on-failure";
+#     RestartSec = 1;
+#     TimeoutStopSec = 10;
+#   };
+#   Install = {
+#     WantedBy = [ "graphical-session.target" ];
+#   };
+# };
 
   services.gnome-keyring.enable = true;
 

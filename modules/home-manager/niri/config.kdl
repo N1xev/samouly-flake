@@ -2,7 +2,7 @@
 // spawn-sh-at-startup "swaybg -i ~/Pictures/wallpaper.jpg -m fill &"
 spawn-at-startup "/run/current-system/sw/libexec/polkit-gnome-authentication-agent-1"
 spawn-sh-at-startup "quickshell -c ~/.config/DMS &"
-spawn-sh-at-startup "vicinae server "
+// spawn-sh-at-startup "vicinae server "
 spawn-at-startup "legcord"
 cursor {
     xcursor-theme "Bibata-Modern-Ice"
@@ -269,7 +269,7 @@ animations {
 // by setting an empty default-column-width.
 
 window-rule {
-          opacity 0.95
+          opacity 1.0
       draw-border-with-background false
 
 }
@@ -329,8 +329,8 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+D hotkey-overlay-title="Run an Application: vicinae" { spawn "vicinae toggle"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "nvidia-offload ghostty"; }
+    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.

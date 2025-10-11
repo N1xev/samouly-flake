@@ -1,0 +1,255 @@
+{ inputs, ... }: {
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd = {
+      enable = true;
+      variables = [ "--all" ];
+      extraCommands = [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+    };
+    settings = {
+      # Environment variables for NVIDIA and performance
+      env = [
+        "WLR_NO_HARDWARE_CURSORS,1"
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+        "LIBVA_DRIVER_NAME,nvidia"
+        # "GBM_BACKEND,nvidia-drm"
+        # "__GL_GSYNC_ALLOWED,0"
+        # "__GL_VRR_ALLOWED,0"
+        # "_JAVA_AWT_WM_NONREPARENTING,1"
+        # "QT_QPA_PLATFORM,wayland"
+        # "GDK_BACKEND,wayland"
+        # "XDG_SESSION_TYPE,wayland"
+        # "SDL_VIDEODRIVER,wayland"
+        # "CLUTTER_BACKEND,wayland"
+        # "MOZ_ENABLE_WAYLAND,1"
+        # "QT_QPA_PLATFORMTHEME,qt6ct"
+      ];
+
+      # Miscellaneous settings for better performance and compatibility
+      misc = {
+        force_default_wallpaper = 0;
+        disable_hyprland_logo = true;
+        allow_session_lock_restore = true;
+        enable_swallow = false;
+        focus_on_activate = true;
+        new_window_takes_over_fullscreen = 2;
+      };
+
+      # Monitor configuration
+      monitor = ",preferred,auto,auto";
+
+      # Program variables
+      "$terminal" = "ghostty";
+      "$fileManager" = "nautilus";
+      "$menu" = "vicinae";
+
+      # Input configuration
+      input = {
+        kb_layout = "us,ara";
+        kb_options = "grp:alt_shift_toggle";
+        numlock_by_default = true;
+        repeat_delay = 300;
+        repeat_rate = 35;
+        follow_mouse = 1;
+        focus_on_close = 1;
+        touchpad = {
+          natural_scroll = true;
+          disable_while_typing = true;
+          clickfinger_behavior = true;
+          scroll_factor = 0.5;
+          drag_lock = true;
+          tap-to-click = true;
+          tap-and-drag = true;
+        };
+        special_fallthrough = true;
+      };
+
+      # General settings (optimized for performance)
+      general = {
+        gaps_in = 3;
+        gaps_out = 10;
+        border_size = 1;
+        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        "col.inactive_border" = "rgba(595959aa)";
+        resize_on_border = false;
+        allow_tearing = false;
+        layout = "dwindle";
+        no_border_on_floating = true;
+        no_focus_fallback = true;
+      };
+
+      # Decoration settings (optimized for performance)
+      decoration = {
+        rounding = 5;
+        active_opacity = 0.95;
+        inactive_opacity = 0.85;
+        shadow = {
+          enabled = false;
+          range = 4;
+          render_power = 3;
+          color = "rgba(1a1a1aee)";
+        };
+        blur = {
+          enabled = false;
+          size = 3;
+          passes = 1;
+          vibrancy = 0.1696;
+        };
+      };
+
+      # Animation settings (optimized for performance)
+      animations = {
+        enabled = true;
+        bezier = [
+          "easeOutQuint, 0.23, 1, 0.32, 1"
+          "easeInOutCubic, 0.65, 0.05, 0.36, 1"
+          "linear, 0, 0, 1, 1"
+          "quick, 0.15, 0, 0.1, 1"
+        ];
+        animation = [
+          "windows, 1, 3, easeOutQuint"
+          "windowsIn, 1, 3, easeOutQuint, popin 80%"
+          "windowsOut, 1, 2, linear, popin 80%"
+          "fadeIn, 1, 2, quick"
+          "fadeOut, 1, 2, quick"
+          "fade, 1, 2, quick"
+          "workspaces, 1, 2, quick"
+          "workspacesIn, 1, 2, quick"
+          "workspacesOut, 1, 2, quick"
+        ];
+      };
+
+      # Dwindle layout settings
+      dwindle = {
+        pseudotile = true;
+        preserve_split = true;
+      };
+
+      # Master layout settings
+      master = {
+        new_status = "master";
+      };
+
+      # Gesture settings for touchpad (updated for latest Hyprland)
+      # Note: workspace_swipe_fingers was removed in newer Hyprland versions
+      # Gestures should work with 3-finger swipes by default now
+      gestures = {
+        # workspace_swipe = true;
+        workspace_swipe_distance = 200;
+        workspace_swipe_invert = true;
+        workspace_swipe_min_speed_to_force = 30;
+        workspace_swipe_create_new = false;
+      };
+
+      # Device-specific settings
+      device = {
+        name = "epic-mouse-v1";
+        sensitivity = -0.5;
+      };
+
+      # Key bindings
+      "$mainMod" = "SUPER";
+      bind = [
+        "$mainMod, return, exec, $terminal"
+        "$mainMod, Q, killactive"
+        "$mainMod, M, exit"
+        "$mainMod, E, exec, $fileManager"
+        "$mainMod, V, togglefloating"
+        "$mainMod, D, exec, $menu"
+        "$mainMod, P, pseudo"
+        "$mainMod, J, togglesplit"
+        # Focus movement
+        "$mainMod, left, movefocus, l"
+        "$mainMod, right, movefocus, r"
+        "$mainMod, up, movefocus, u"
+        "$mainMod, down, movefocus, d"
+        # Workspace switching
+        "$mainMod, 1, workspace, 1"
+        "$mainMod, 2, workspace, 2"
+        "$mainMod, 3, workspace, 3"
+        "$mainMod, 4, workspace, 4"
+        "$mainMod, 5, workspace, 5"
+        "$mainMod, 6, workspace, 6"
+        "$mainMod, 7, workspace, 7"
+        "$mainMod, 8, workspace, 8"
+        "$mainMod, 9, workspace, 9"
+        "$mainMod, 0, workspace, 10"
+        # Move to workspace
+        "$mainMod SHIFT, 1, movetoworkspace, 1"
+        "$mainMod SHIFT, 2, movetoworkspace, 2"
+        "$mainMod SHIFT, 3, movetoworkspace, 3"
+        "$mainMod SHIFT, 4, movetoworkspace, 4"
+        "$mainMod SHIFT, 5, movetoworkspace, 5"
+        "$mainMod SHIFT, 6, movetoworkspace, 6"
+        "$mainMod SHIFT, 7, movetoworkspace, 7"
+        "$mainMod SHIFT, 8, movetoworkspace, 8"
+        "$mainMod SHIFT, 9, movetoworkspace, 9"
+        "$mainMod SHIFT, 0, movetoworkspace, 10"
+        # Special workspace
+        "$mainMod, S, togglespecialworkspace, magic"
+        "$mainMod SHIFT, S, movetoworkspace, special:magic"
+        # Scroll workspaces
+        "$mainMod, mouse_down, workspace, e+1"
+        "$mainMod, mouse_up, workspace, e-1"
+        # Move to left/right workspaces (keyboard support)
+        "$mainMod, left, workspace, e-1"
+        "$mainMod, right, workspace, e+1"
+        # Gaming bindings
+        "$mainMod, G, exec, gamemoderun steam"
+        "$mainMod SHIFT, G, exec, nvidia-settings"
+        "$mainMod, M, exec, mangohud --dlsym glxinfo"
+      ];
+
+      # Mouse bindings
+      bindm = [
+        "$mainMod, mouse:272, movewindow"
+        "$mainMod, mouse:273, resizewindow"
+      ];
+
+      # Long press bindings (repeatable)
+      bindl = [
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPause, exec, playerctl play-pause"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
+      ];
+
+      # Edge bindings (repeatable)
+      bindel = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
+        ", XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
+      ];
+
+      # Window rules
+      windowrule = [
+        "suppressevent maximize, class:.*"
+        "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
+        # Gaming rules
+        "immediate, class:^(steam_app_).*"
+        "fullscreen, class:^(steam_app_).*"
+        "workspace 5, class:^(steam_app_).*"
+      ];
+
+      # Autostart
+      exec-once = [
+        "swaybg -i ~/Pictures/wallpaper.jpg -m fill &"
+        "qs -c ~/.config/DMS"
+        "vicinae server &"
+      ];
+
+      # Binds settings
+      binds = {
+        scroll_event_delay = 0;
+      };
+
+
+    };
+  };
+}
