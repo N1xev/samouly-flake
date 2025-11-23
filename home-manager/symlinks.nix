@@ -5,7 +5,6 @@
     "niri/config.kdl".source = ../modules/home-manager/niri/config.kdl;
     "starship.toml".source = ../modules/home-manager/starship/starship.toml;
     "ghostty/config".source = ../modules/home-manager/ghostty/config;
-    "waybar/".source = ../modules/home-manager/waybar;
     # "hypr/hyprland.conf".source = ../modules/home-manager/hypr/hyprland.conf;
   };
 

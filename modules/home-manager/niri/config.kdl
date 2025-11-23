@@ -233,7 +233,6 @@ inactive-gradient from="#3a3c4ac7" to="#5e5a6aab" angle=45 relative-to="workspac
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.

@@ -1,6 +1,0 @@
-@import url("style.css");
-
-window {
-    /* background: @fg-color; */
-    color: @fg-color;
-}

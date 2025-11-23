@@ -21,19 +21,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
-    dms-cli = {
-      url = "github:AvengeMedia/danklinux";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     dgop = {
       url = "github:AvengeMedia/dgop";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.dgop.follows = "dgop";
+    };
   };
 
   outputs =
-    { self, home-manager, nixpkgs, vicinae, quickshell, dgop, dms-cli, ... }@inputs:
+    { self, home-manager, nixpkgs, vicinae, quickshell, dgop, ... }@inputs:
     let
       system = "x86_64-linux";
       username = "samouly";

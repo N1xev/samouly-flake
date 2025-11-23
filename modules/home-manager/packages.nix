@@ -55,11 +55,9 @@
     swaybg
     fuzzel
     swaylock
-    waybar
     wl-clipboard
     wl-screenrec
     xdg-desktop-portal-wlr
-    waybar-mpris
     playerctl
     xwayland-satellite
     uwsm
@@ -98,11 +96,10 @@
     neovim
     vscode
     jetbrains.webstorm
-    code-cursor
-    zed-editor-fhs
+    cursor
     ghostty
     wezterm
-    vim # fallback editor
+    vim
     fish
     wget
     pkg-config
@@ -122,6 +119,8 @@
     bun
     cypress
     playwright-test
+    postgresql
+
     # GTK4/Cairo development libraries (bar dependencies)
     glib
     glib.dev
@@ -159,7 +158,7 @@
     material-symbols
     comic-mono
     monaspace
-    
+
     # ------------------------
     # Multimedia & streaming
     # ------------------------
