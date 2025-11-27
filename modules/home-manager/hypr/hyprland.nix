@@ -130,11 +130,7 @@
       # Master layout settings
       master = { new_status = "master"; };
 
-      # Gesture settings for touchpad (updated for latest Hyprland)
-      # Note: workspace_swipe_fingers was removed in newer Hyprland versions
-      # Gestures should work with 3-finger swipes by default now
       gestures = {
-        # workspace_swipe = true;
         workspace_swipe_distance = 200;
         workspace_swipe_invert = true;
         workspace_swipe_min_speed_to_force = 30;

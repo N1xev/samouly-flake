@@ -15,6 +15,9 @@
     zstd
     gnupg
     ntfs3g
+    unzip
+    lazygit
+    ripgrep
     # ------------------------
     # System monitoring & tools
     # ------------------------
