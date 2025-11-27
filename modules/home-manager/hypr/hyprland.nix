@@ -44,7 +44,7 @@
       # Program variables
       "$terminal" = "ghostty";
       "$fileManager" = "nautilus";
-      "$menu" = "vicinae";
+      "$menu" = "fuzzel";
 
       # Input configuration
       input = {
@@ -70,22 +70,21 @@
       # General settings (optimized for performance)
       general = {
         gaps_in = 3;
-        gaps_out = 10;
+        gaps_out = 20;
         border_size = 1;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = "rgba(ff637eee) rgba(4d0218ee) 45deg";
+        "col.inactive_border" = "rgba(4a5565aa)";
         resize_on_border = false;
         allow_tearing = false;
         layout = "dwindle";
-        no_border_on_floating = true;
         no_focus_fallback = true;
       };
 
       # Decoration settings (optimized for performance)
       decoration = {
-        rounding = 5;
-        active_opacity = 0.95;
-        inactive_opacity = 0.85;
+        rounding = 2;
+        active_opacity = 0.98;
+        inactive_opacity = 0.95;
         shadow = {
           enabled = false;
           range = 4;
@@ -93,7 +92,7 @@
           color = "rgba(1a1a1aee)";
         };
         blur = {
-          enabled = false;
+          enabled = true;
           size = 3;
           passes = 1;
           vibrancy = 0.1696;
@@ -129,9 +128,7 @@
       };
 
       # Master layout settings
-      master = {
-        new_status = "master";
-      };
+      master = { new_status = "master"; };
 
       # Gesture settings for touchpad (updated for latest Hyprland)
       # Note: workspace_swipe_fingers was removed in newer Hyprland versions
@@ -201,6 +198,23 @@
         "$mainMod, G, exec, gamemoderun steam"
         "$mainMod SHIFT, G, exec, nvidia-settings"
         "$mainMod, M, exec, mangohud --dlsym glxinfo"
+        "$mainMod, Z, exec, zen-beta"
+        # screenshot
+        ", Print, exec, grimblast copy screen"
+
+        # test notifications
+
+        # F12 - Short wisdom quote
+        "SUPER_ALT, F12, exec, notify-send -i /home/samouly/Downloads/llama.webp 'Daily Wisdom' 'The journey of a thousand miles begins with a single step.' -u normal"
+
+        # F11 - Long motivational message
+        "SUPER_ALT, F11, exec, notify-send -i /home/samouly/Downloads/llama.webp 'Motivation' 'Success is not final, failure is not fatal: it is the courage to continue that counts. Keep pushing forward, embrace challenges, and never stop learning. Your potential is limitless when you believe in yourself.' -u normal"
+
+        # F10 - Notification with 2 action buttons
+        "SUPER_ALT, F10, exec, notify-send -i /home/samouly/Downloads/llama.webp 'Quick Actions' 'Choose your next move' --action='work=Start Working' --action='break=Take Break' -u normal"
+
+        # F9 - Notification with multiple action buttons
+        "SUPER_ALT, F9, exec, notify-send -i /home/samouly/Downloads/llama.webp 'Control Panel' 'What would you like to do?' --action='code=Open VSCode' --action='browser=Open Browser' --action='terminal=Open Terminal' --action='shutdown=Shutdown' -u critical"
       ];
 
       # Mouse bindings
@@ -227,16 +241,6 @@
         ", XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
       ];
 
-      # Window rules
-      windowrule = [
-        "suppressevent maximize, class:.*"
-        "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
-        # Gaming rules
-        "immediate, class:^(steam_app_).*"
-        "fullscreen, class:^(steam_app_).*"
-        "workspace 5, class:^(steam_app_).*"
-      ];
-
       # Autostart
       exec-once = [
         "swaybg -i ~/Pictures/wallpaper.jpg -m fill &"
@@ -244,11 +248,10 @@
         "vicinae server &"
       ];
 
-      # Binds settings
-      binds = {
-        scroll_event_delay = 0;
-      };
+      gesture = [ "3, horizontal, workspace" ];
 
+      # Binds settings
+      binds = { scroll_event_delay = 0; };
 
     };
   };

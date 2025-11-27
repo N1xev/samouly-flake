@@ -16,5 +16,6 @@
     glib
     glib.dev
     gobject-introspection.dev
+    ntfs3g
   ];
 }

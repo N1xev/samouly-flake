@@ -1,7 +1,7 @@
 
 // spawn-sh-at-startup "swaybg -i ~/Pictures/wallpaper.jpg -m fill &"
 spawn-at-startup "/run/current-system/sw/libexec/polkit-gnome-authentication-agent-1"
-spawn-sh-at-startup "quickshell -c ~/.config/DMS &"
+spawn-sh-at-startup "quickshell -c ~/.config/DMS/quickshell &"
 // spawn-sh-at-startup "vicinae server "
 spawn-at-startup "legcord"
 cursor {

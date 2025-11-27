@@ -64,11 +64,15 @@
     dbus
     gtk4
     gtk4-layer-shell
+    nwg-icon-picker
     wayland
     wayland-protocols
     wayland-scanner
     brightnessctl
     cliphist
+    grimblast
+    papirus-icon-theme
+    gimp
     # ------------------------
     # Nix utilities
     # ------------------------
@@ -149,6 +153,8 @@
     nerd-fonts.fira-code
     nerd-fonts.geist-mono
     nerd-fonts.jetbrains-mono
+    nerd-fonts.comic-shanns-mono
+    comic-mono
     fira-code
     geist-font
     nwg-look

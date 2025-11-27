@@ -24,7 +24,6 @@
     };
 
     interactiveShellInit = ''
-      set -gx MANGOHUD 1
       set -gx DXVK_HUD fps,memory,gpuload
       set -gx PROTON_ENABLE_NVAPI 1
       set -g fish_greeting ""
@@ -101,7 +100,7 @@
   };
 
   programs.mangohud = {
-    enable = true;
+    enable = false;
     settings = {
       fps = true;
       gpu_stats = true;
