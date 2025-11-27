@@ -99,7 +99,6 @@
         };
       };
 
-      # Animation settings (optimized for performance)
       animations = {
         enabled = true;
         bezier = [
@@ -121,13 +120,11 @@
         ];
       };
 
-      # Dwindle layout settings
       dwindle = {
         pseudotile = true;
         preserve_split = true;
       };
 
-      # Master layout settings
       master = { new_status = "master"; };
 
       gestures = {
@@ -137,13 +134,11 @@
         workspace_swipe_create_new = false;
       };
 
-      # Device-specific settings
       device = {
         name = "epic-mouse-v1";
         sensitivity = -0.5;
       };
 
-      # Key bindings
       "$mainMod" = "SUPER";
       bind = [
         "$mainMod, return, exec, $terminal"
