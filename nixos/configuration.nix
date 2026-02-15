@@ -1,20 +1,25 @@
-{ config, inputs, pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
     ./hardware-configuration.nix
     ../modules/nixos/main.nix
     ./cachix.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelParams = [ "i915.enable_guc=2" ];
+    # kernelPackages = pkgs.linuxPackages_6_12;
+  };
 
-  networking.hostName = "nixos";
-
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;
+  };
 
   time.timeZone = "Africa/Cairo";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -31,50 +36,65 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  nixpkgs.config.permittedInsecurePackages = [ "ventoy-full-gtk3" ];
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services = {
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+    desktopManager = {
+      gnome = {
+        enable = true;
+      };
+    };
+
+    displayManager = {
+      sddm = {
+        enable = true;
+        package = pkgs.kdePackages.sddm;
+        extraPackages = with pkgs; [
+          kdePackages.qtsvg
+          kdePackages.qtmultimedia
+        ];
+        wayland.enable = true;
+        theme = "sddm-stray";
+      };
+    };
+
+    printing.enable = true;
+
+    pulseaudio.enable = false;
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
   };
 
-  services.xserver.displayManager.importedVariables =
-    [ "XDG_SESSION_TYPE" "XDG_CURRENT_DESKTOP" "XDG_SESSION_DESKTOP" ];
-  security.pam.services.gdm.enableGnomeKeyring = true;
-
-  services.printing.enable = true;
-
-  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
 
-  users.users.samouly = {
+  users.users.${username} = {
     isNormalUser = true;
     description = "Alaa Elsamouly";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs;
-      [
-        #  thunderbird
-      ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        # opencode
+      ]; # TODO: undefined reference
+    };
+  };
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     auto-optimise-store = true;
 
     http-connections = 50;
@@ -90,5 +110,5 @@
     options = "--delete-older-than 7d";
   };
 
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.05";
 }

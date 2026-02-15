@@ -1,7 +1,6 @@
 
 // spawn-sh-at-startup "swaybg -i ~/Pictures/wallpaper.jpg -m fill &"
 spawn-at-startup "/run/current-system/sw/libexec/polkit-gnome-authentication-agent-1"
-spawn-sh-at-startup "quickshell -c ~/.config/DMS/quickshell &"
 // spawn-sh-at-startup "vicinae server "
 spawn-at-startup "legcord"
 cursor {
@@ -551,54 +550,5 @@ binds {
 
 
 
-    // DM binds
-
-   Mod+Space hotkey-overlay-title="Application Launcher" {
-      spawn "dms" "ipc" "call" "spotlight" "toggle";
-   }
-   Mod+Alt+V hotkey-overlay-title="Clipboard Manager" {
-      spawn "dms" "ipc" "call" "clipboard" "toggle";
-   }
-   Mod+M hotkey-overlay-title="Task Manager" {
-      spawn "dms" "ipc" "call" "processlist" "toggle";
-   }
-   Mod+N hotkey-overlay-title="Notification Center" {
-      spawn "dms" "ipc" "call" "notifications" "toggle";
-   }
-   Mod+Shift+Comma hotkey-overlay-title="Settings" {
-      spawn "dms" "ipc" "call" "settings" "toggle";
-   }
-   Mod+P hotkey-overlay-title="Notepad" {
-      spawn "dms" "ipc" "call" "notepad" "toggle";
-   }
-   Super+L hotkey-overlay-title="Lock Screen" {
-      spawn "dms" "ipc" "call" "lock" "lock";
-   }
-   Mod+X hotkey-overlay-title="Power Menu" {
-      spawn "dms" "ipc" "call" "powermenu" "toggle";
-   }
-   Alt+XF86AudioRaiseVolume allow-when-locked=true {
-      spawn "dms" "ipc" "call" "audio" "increment" "3";
-   }
-   Alt+XF86AudioLowerVolume allow-when-locked=true {
-      spawn "dms" "ipc" "call" "audio" "decrement" "3";
-   }
-   Alt+XF86AudioMute allow-when-locked=true {
-      spawn "dms" "ipc" "call" "audio" "mute";
-   }
-   Alt+XF86AudioMicMute allow-when-locked=true {
-      spawn "dms" "ipc" "call" "audio" "micmute";
-   }
-   Alt+XF86MonBrightnessUp allow-when-locked=true {
-      spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
-   }
-   // You can override the default device for e.g. keyboards by adding the device name to the last param
-   Alt+XF86MonBrightnessDown allow-when-locked=true {
-      spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
-   }
-   // Night mode toggle
-   Mod+Shift+N allow-when-locked=true {
-      spawn "dms" "ipc" "call" "night" "toggle";
-   }
 }
 

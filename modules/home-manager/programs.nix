@@ -1,120 +1,170 @@
-{ pkgs, lib, ... }: {
+{ pkgs, ... }:
+{
 
-  programs.fish = {
-    enable = true;
-
-    shellAliases = {
-      "gpu-temp" =
-        "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits";
-      "gpu-usage" =
-        "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
-      "gpu-mem" =
-        "nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader";
-      "gpu-info" = "nvidia-smi";
-      "gpu-driver" = "cat /proc/driver/nvidia/version";
-
-      "nvidia-versions" = "nix search nixpkgs nvidia | grep nvidiaPackages";
-      "current-nvidia" =
-        "nix eval nixpkgs#linuxPackages.nvidiaPackages.stable.version";
-
-      "steam-gaming" = "gamemoderun steam";
-      "check-vulkan" = "vulkaninfo --summary";
-      "hms" = "home-manager switch --flake ~/Projects/flakey/#$USER";
-      "nrs" = "sudo nixos-rebuild switch --flake ~/Projects/flakey/#$hostname";
+  programs = {
+    git = {
+      enable = true;
+      settings = {
+        user.name = "N1xev";
+        user.email = "alasamouly@gmail.com";
+      };
     };
 
-    interactiveShellInit = ''
-      set -gx DXVK_HUD fps,memory,gpuload
-      set -gx PROTON_ENABLE_NVAPI 1
-      set -g fish_greeting ""
-      set -gx __GL_THREADED_OPTIMIZATIONS 1
-      set -gx __GL_SHADER_CACHE 1
-      set -gx __GLX_VENDOR_LIBRARY_NAME nvidia
-      set -gx LIBVA_DRIVER_NAME nvidia
-      set -gx GBM_BACKEND nvidia-drm
-      set completion_dir $HOME/.config/fish/completions
-      if test -d $completion_dir
-        for file in $completion_dir/*.fish
-            if test -f $file
-                source $file
-            end
+    starship = {
+      enable = true;
+    };
+
+    bash = {
+      enable = true;
+      enableCompletion = true;
+
+      bashrcExtra = ''
+        export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+        export PATH="$PATH:$HOME/bin:$HOME/.bun/bin:$HOME/bun/bin"
+      '';
+
+      shellAliases = {
+        k = "kubectl";
+        hms = "home-manager switch --flake ~/Projects/flakey/#$USER";
+        nrs = "sudo nixos-rebuild switch --flake ~/Projects/flakey/#$hostname";
+      };
+
+      initExtra = ''
+        if [[ -z "$TMUX" && $- == *i* ]]; then
+          tmux attach-session -t default 2>/dev/null || tmux new-session -s default
+        fi
+      '';
+    };
+
+    nushell = {
+      extraConfig = ''
+        if ($env | get -i TMUX | is-empty) {
+          try { tmux attach-session -t default } catch { tmux new-session -s default }
+        }
+      '';
+      shellAliases = {
+        hms = "home-manager switch --flake ~/Projects/flakey/#$USER";
+        nrs = "sudo nixos-rebuild switch --flake ~/Projects/flakey/#$hostname";
+      };
+    };
+
+    fish = {
+      enable = true;
+
+      shellAliases = {
+        "gpu-temp" = "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits";
+        "gpu-usage" = "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
+        "gpu-mem" = "nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader";
+        "gpu-info" = "nvidia-smi";
+        "gpu-driver" = "cat /proc/driver/nvidia/version";
+
+        "nvidia-versions" = "nix search nixpkgs nvidia | grep nvidiaPackages";
+        "current-nvidia" = "nix eval nixpkgs#linuxPackages.nvidiaPackages.stable.version";
+
+        "steam-gaming" = "gamemoderun steam";
+        "check-vulkan" = "vulkaninfo --summary";
+        "hms" = "home-manager switch --flake ~/Projects/flakey/#$USER";
+        "nrs" = "sudo nixos-rebuild switch --flake ~/Projects/flakey/#$hostname";
+      };
+
+      interactiveShellInit = ''
+        set completion_dir $HOME/.config/fish/completions
+        if not set -q TMUX
+         tmux attach-session -t default 2>/dev/null; or tmux new-session -s default
         end
-      end
-      starship init fish | source
-    '';
-
-    functions = {
-      gpu_monitor = {
-        description = "Real-time GPU monitoring";
-        body = ''
-          while true
-              clear
-              echo "=== GPU Monitor ==="
-              echo "Temperature: "(gpu-temp)"°C"
-              echo "Usage: "(gpu-usage)"%"
-              echo "Memory: "(gpu-mem)
-              echo ""
-              nvidia-smi --query-gpu=utilization.gpu,memory.used,temperature.gpu,power.draw --format=csv
-              sleep 2
+        if test -d $completion_dir
+          for file in $completion_dir/*.fish
+              if test -f $file
+                  source $file
+              end
           end
-        '';
+        end
+        starship init fish | source
+      '';
+
+      functions = {
+        gpu_monitor = {
+          description = "Real-time GPU monitoring";
+          body = ''
+            while true
+                clear
+                echo "=== GPU Monitor ==="
+                echo "Temperature: "(gpu-temp)"°C"
+                echo "Usage: "(gpu-usage)"%"
+                echo "Memory: "(gpu-mem)
+                echo ""
+                nvidia-smi --query-gpu=utilization.gpu,memory.used,temperature.gpu,power.draw --format=csv
+                sleep 2
+            end
+          '';
+        };
+
+        gaming_check = {
+          description = "Check gaming setup status";
+          body = ''
+            echo "Gaming System Status"
+            echo ""
+            echo "GPU Info:"
+            gpu-info | head -3
+            echo ""
+            echo "Temperature: "(gpu-temp)"°C"
+            echo "GPU Usage: "(gpu-usage)"%"
+            echo "Vulkan: "
+            if vulkaninfo --summary >/dev/null 2>&1
+                echo "Working"
+            else
+                echo "Not working"
+            end
+            echo ""
+            echo "GameMode: "
+            if pgrep gamemoded >/dev/null
+                echo "Running"
+            else
+                echo "آot running"
+            end
+          '';
+        };
       };
 
-      gaming_check = {
-        description = "Check gaming setup status";
-        body = ''
-          echo "Gaming System Status"
-          echo ""
-          echo "GPU Info:"
-          gpu-info | head -3
-          echo ""
-          echo "Temperature: "(gpu-temp)"°C"
-          echo "GPU Usage: "(gpu-usage)"%"
-          echo "Vulkan: "
-          if vulkaninfo --summary >/dev/null 2>&1
-              echo "Working"
-          else
-              echo "Not working"
-          end
-          echo ""
-          echo "GameMode: "
-          if pgrep gamemoded >/dev/null
-              echo "Running"
-          else
-              echo "آot running"
-          end
-        '';
+      plugins = [
+        {
+          name = "fzf-fish";
+          inherit (pkgs.fishPlugins.fzf-fish) src;
+        }
+        {
+          name = "done";
+          inherit (pkgs.fishPlugins.done) src;
+        }
+      ];
+
+    };
+
+    mangohud = {
+      enable = false;
+      settings = {
+        fps = true;
+        gpu_stats = true;
+        gpu_temp = true;
+        gpu_power = true;
+        cpu_stats = true;
+        cpu_temp = true;
+        ram = true;
+        vram = true;
+        frametime = true;
+        position = "top-left";
+        toggle_hud = "Shift_R+F12";
+        toggle_logging = "Shift_L+F2";
       };
     };
 
-    plugins = [
-      {
-        name = "fzf-fish";
-        src = pkgs.fishPlugins.fzf-fish.src;
-      }
-      {
-        name = "done";
-        src = pkgs.fishPlugins.done.src;
-      }
-    ];
-  };
-
-  programs.mangohud = {
-    enable = false;
-    settings = {
-      fps = true;
-      gpu_stats = true;
-      gpu_temp = true;
-      gpu_power = true;
-      cpu_stats = true;
-      cpu_temp = true;
-      ram = true;
-      vram = true;
-      frametime = true;
-      position = "top-left";
-      toggle_hud = "Shift_R+F12";
-      toggle_logging = "Shift_L+F2";
-    };
+    # ax-shell = {
+    #   enable = true;
+    #   settings = {
+    #     # --- General ---
+    #     wallpapersDir = "Pictures/Wallpapers";
+    #
+    #   };
+    # };
   };
 
   # programs.gamemode = {

@@ -1,4 +1,4 @@
-{ config, pkgs, quickshell, system, ... }:
+{ quickshell, system, ... }:
 
 {
   home.packages = [

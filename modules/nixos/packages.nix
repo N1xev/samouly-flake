@@ -2,10 +2,13 @@
 
 {
   environment.systemPackages = with pkgs; [
+    (discord.override { withVencord = true; })
+    inputs.sddm-stray.packages.${pkgs.stdenv.hostPlatform.system}.default
     git
+    file-roller
     home-manager
+    pulseaudio
     kitty
-    python3Full
     python313Packages.pip
     pipx
     ninja

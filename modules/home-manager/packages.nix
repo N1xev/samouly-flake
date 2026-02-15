@@ -1,4 +1,10 @@
-{ pkgs, inputs, lib, system, ... }: {
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
+{
   home.packages = with pkgs; [
     # ------------------------
     # Command-line utilities
@@ -56,13 +62,19 @@
     # ------------------------
     swww
     swaybg
+    waybar
     fuzzel
     swaylock
     wl-clipboard
     wl-screenrec
+    ffmpeg
     xdg-desktop-portal-wlr
     playerctl
     xwayland-satellite
+    bluetui
+    pavucontrol
+    pamixer
+    slurp
     uwsm
     dbus
     gtk4
@@ -79,7 +91,7 @@
     # ------------------------
     # Nix utilities
     # ------------------------
-    nixfmt-classic
+    nixfmt
     nix-output-monitor
     direnv
 
@@ -87,6 +99,7 @@
     # Productivity / docs
     # ------------------------
     hugo # static site generator
+    tmux # my beloved terminal multiplixer
     glow # markdown previewer
     vhs
     freeze
@@ -95,19 +108,22 @@
     obsidian
     blender
     kdePackages.dolphin
+    libreoffice-qt
+    # opencode # TODO: undefined reference, see issue #opencode-missing
 
     # ------------------------
     # Development tools
     # ------------------------
     git
     neovim
+    neovide
     vscode
     jetbrains.webstorm
-    cursor
     ghostty
     wezterm
     vim
     fish
+    nushell
     wget
     pkg-config
     # Go
@@ -128,6 +144,10 @@
     playwright-test
     postgresql
 
+    # Nix stuff
+    statix
+    nix-diff
+
     # GTK4/Cairo development libraries (bar dependencies)
     glib
     glib.dev
@@ -145,7 +165,6 @@
     gammastep
     fluent-gtk-theme
     colloid-gtk-theme
-    tela-circle-icon-theme
     whitesur-icon-theme
     # tau-hydrogen
     flameshot
@@ -177,16 +196,20 @@
     # Communication
     # ------------------------
     legcord
+    vesktop
     discord
+    zapzap
     google-chrome
     brave
     # ------------------------
     # Inputs (flakes)
     # ------------------------
     inputs.zen-browser.packages."${system}".beta
-    inputs.fabric.packages.${system}.default
-    inputs.fabric.packages.${system}.run-widget
+    # inputs.fabric-widgets.packages.${system}.default
+    # inputs.fabric-widgets.packages.${system}.run-widget
     # inputs.dms-cli.packages.${pkgs.system}.default
-    inputs.dgop.packages.${pkgs.system}.default
+    (lib.hiPrio inputs.Ambxst.packages.${system}.default)
+
+    inputs.dgop.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

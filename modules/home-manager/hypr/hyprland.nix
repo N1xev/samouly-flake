@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+_: {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd = {
@@ -10,22 +10,16 @@
       ];
     };
     settings = {
-      # Environment variables for NVIDIA and performance
       env = [
         "WLR_NO_HARDWARE_CURSORS,1"
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-        "LIBVA_DRIVER_NAME,nvidia"
-        # "GBM_BACKEND,nvidia-drm"
-        # "__GL_GSYNC_ALLOWED,0"
-        # "__GL_VRR_ALLOWED,0"
-        # "_JAVA_AWT_WM_NONREPARENTING,1"
-        # "QT_QPA_PLATFORM,wayland"
-        # "GDK_BACKEND,wayland"
-        # "XDG_SESSION_TYPE,wayland"
-        # "SDL_VIDEODRIVER,wayland"
-        # "CLUTTER_BACKEND,wayland"
-        # "MOZ_ENABLE_WAYLAND,1"
-        # "QT_QPA_PLATFORMTHEME,qt6ct"
+        "LIBVA_DRIVER_NAME,iHD"
+        "GBM_BACKEND,nvidia-drm"
+        "NIXOS_OZONE_WL,1"
+        "NVD_BACKEND,direct"
+        "MOZ_DISABLE_RDD_SANDBOX,1"
+        "__GL_GSYNC_ALLOWED,1"
+        "GDK_BACKEND,wayland"
       ];
 
       # Miscellaneous settings for better performance and compatibility
@@ -35,7 +29,6 @@
         allow_session_lock_restore = true;
         enable_swallow = false;
         focus_on_activate = true;
-        new_window_takes_over_fullscreen = 2;
       };
 
       # Monitor configuration
@@ -44,7 +37,7 @@
       # Program variables
       "$terminal" = "ghostty";
       "$fileManager" = "nautilus";
-      "$menu" = "fuzzel";
+      "$menu" = "vicinae toggle";
 
       # Input configuration
       input = {
@@ -70,7 +63,7 @@
       # General settings (optimized for performance)
       general = {
         gaps_in = 3;
-        gaps_out = 20;
+        gaps_out = 10;
         border_size = 1;
         "col.active_border" = "rgba(ff637eee) rgba(4d0218ee) 45deg";
         "col.inactive_border" = "rgba(4a5565aa)";
@@ -82,9 +75,9 @@
 
       # Decoration settings (optimized for performance)
       decoration = {
-        rounding = 2;
-        active_opacity = 0.98;
-        inactive_opacity = 0.95;
+        rounding = 0;
+        active_opacity = 0.9;
+        inactive_opacity = 0.85;
         shadow = {
           enabled = false;
           range = 4;
@@ -93,8 +86,8 @@
         };
         blur = {
           enabled = true;
-          size = 3;
-          passes = 1;
+          size = 10;
+          passes = 5;
           vibrancy = 0.1696;
         };
       };
@@ -125,7 +118,9 @@
         preserve_split = true;
       };
 
-      master = { new_status = "master"; };
+      master = {
+        new_status = "master";
+      };
 
       gestures = {
         workspace_swipe_distance = 200;
@@ -178,7 +173,7 @@
         "$mainMod SHIFT, 0, movetoworkspace, 10"
         # Special workspace
         "$mainMod, S, togglespecialworkspace, magic"
-        "$mainMod SHIFT, S, movetoworkspace, special:magic"
+        "$mainMod CONTROL, S, movetoworkspace, special:magic"
         # Scroll workspaces
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
@@ -190,11 +185,17 @@
         "$mainMod SHIFT, G, exec, nvidia-settings"
         "$mainMod, M, exec, mangohud --dlsym glxinfo"
         "$mainMod, Z, exec, zen-beta"
-        # screenshot
-        ", Print, exec, grimblast copy screen"
+
+        # GUI Screenshot -> Copy + Save to Pictures/Screenshots
+        "$mainMod SHIFT, S, exec, flameshot gui -c -p ~/Pictures/Screenshots"
+
+        # Fullscreen Screenshot -> Copy + Save to Pictures/Screenshots
+        ", Print, exec, flameshot full -c -p ~/Pictures/Screenshots"
+
+        # Active Screen (under cursor) -> Copy + Save to Pictures/Screenshots
+        "CONTROL, Print, exec, flameshot screen -c -p ~/Pictures/Screenshots"
 
         # test notifications
-
         # F12 - Short wisdom quote
         "SUPER_ALT, F12, exec, notify-send -i /home/samouly/Downloads/llama.webp 'Daily Wisdom' 'The journey of a thousand miles begins with a single step.' -u normal"
 
@@ -235,14 +236,15 @@
       # Autostart
       exec-once = [
         "swaybg -i ~/Pictures/wallpaper.jpg -m fill &"
-        "qs -c ~/.config/DMS"
         "vicinae server &"
       ];
 
       gesture = [ "3, horizontal, workspace" ];
 
       # Binds settings
-      binds = { scroll_event_delay = 0; };
+      binds = {
+        scroll_event_delay = 0;
+      };
 
     };
   };
