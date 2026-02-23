@@ -109,7 +109,7 @@
     blender
     kdePackages.dolphin
     libreoffice-qt
-    # opencode # TODO: undefined reference, see issue #opencode-missing
+    # opencode # TODO: undefined reference
 
     # ------------------------
     # Development tools
@@ -201,6 +201,7 @@
     zapzap
     google-chrome
     brave
+    browsh
     # ------------------------
     # Inputs (flakes)
     # ------------------------

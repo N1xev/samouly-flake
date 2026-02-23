@@ -68,6 +68,14 @@
       };
 
       interactiveShellInit = ''
+        set -gx DXVK_HUD fps,memory,gpuload
+        set -gx PROTON_ENABLE_NVAPI 1
+        set -g fish_greeting ""
+        set -gx __GL_THREADED_OPTIMIZATIONS 1
+        set -gx __GL_SHADER_CACHE 1
+        set -gx __GLX_VENDOR_LIBRARY_NAME nvidia
+        set -gx LIBVA_DRIVER_NAME iHD
+        set -gx GBM_BACKEND nvidia-drm
         set completion_dir $HOME/.config/fish/completions
         if not set -q TMUX
          tmux attach-session -t default 2>/dev/null; or tmux new-session -s default

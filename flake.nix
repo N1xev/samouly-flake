@@ -1,5 +1,5 @@
 {
-  description = "Samouly cute NixOS flake";
+  description = "Samouly Nix flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -68,7 +68,7 @@
       hostname = "nixos";
       timezone = "Africa/Cairo";
       pkgs = import nixpkgs {
-        system = system;
+        inherit system;
         config = {
           allowUnfree = true;
           permittedInsecurePackages = [

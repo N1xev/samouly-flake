@@ -73,24 +73,44 @@
   color: @bg;
 }
 
-.notification-row .notification-background .notification .notification-action,
-.notification-row .notification-background .notification .notification-default-action {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action {
   background: transparent;
   color: @fg;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .text-box
+  .summary {
   font-size: 16px;
   color: @fg;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .body {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .text-box
+  .body {
   font-size: 14px;
   color: @fg;
   margin-top: 4px;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .text-box
+  .time {
   font-size: 12px;
   color: @fg;
   opacity: 0.7;
@@ -98,21 +118,38 @@
 }
 
 .notification-row .notification-background .notification .notification-action {
-  border-top: 1px solid @bg-hover;
+  /* background: @bg-hover; */
+  color: @fg;
   padding: 8px;
+  margin: 4px;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
 }
 
-.notification-row .notification-background .notification .notification-action:hover {
-  background: @bg-hover;
+.notification-row
+  .notification-background
+  .notification
+  .notification-action:hover {
+  background: @accent;
+  color: @bg;
 }
 
-.notification-row .notification-background .notification .inline-reply .inline-reply-entry {
+.notification-row
+  .notification-background
+  .notification
+  .inline-reply
+  .inline-reply-entry {
   background: @bg-hover;
   color: @fg;
   padding: 4px 8px;
 }
 
-.notification-row .notification-background .notification .inline-reply .inline-reply-button {
+.notification-row
+  .notification-background
+  .notification
+  .inline-reply
+  .inline-reply-button {
   background: @bg-hover;
   color: @fg;
   margin-left: 4px;
@@ -182,6 +219,8 @@
   padding: 6px;
   margin: 2px;
   border-radius: 0;
+  border: none;
+  box-shadow: none;
 }
 
 .widget-mpris .widget-mpris-player button:hover {
@@ -200,9 +239,19 @@
 }
 
 .widget-buttons-grid {
-  padding: 4px;
+  padding: 8px;
   margin: 8px;
   background: transparent;
+  border-top: 1px solid @bg-hover;
+}
+
+.widget-buttons-grid flowbox flowboxchild {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .widget-buttons-grid button {
@@ -211,6 +260,8 @@
   margin: 4px;
   border-radius: 0;
   color: @fg;
+  border: none;
+  box-shadow: none;
 }
 
 .widget-buttons-grid button:hover {
@@ -266,4 +317,9 @@
 
 .floating-notifications .notification {
   box-shadow: none;
+}
+
+.notification-group:focus {
+  background: transparent;
+  outline: none;
 }

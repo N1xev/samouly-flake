@@ -85,7 +85,7 @@
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
-        # opencode
+        opencode
       ]; # TODO: undefined reference
     };
   };

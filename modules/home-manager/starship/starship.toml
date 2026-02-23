@@ -79,7 +79,7 @@ disabled = false
 [os]
 style = "bg:#ff637e fg:#030712"
 format = '[$symbol]($style)'
-disabled = false # This doesn't work in pwsh in Webstorm terminal.
+disabled = false                # This doesn't work in pwsh in Webstorm terminal.
 
 # The current directory
 [directory]
@@ -96,7 +96,7 @@ symbol = "󰍛"
 
 [time]
 disabled = false
-time_format = "%R" # Hour:Minute Format
+time_format = "%R"         # Hour:Minute Format
 style = "bg:#1e2939"
 format = '[$time]($style)'
 
@@ -128,7 +128,7 @@ disabled = false
 
 [git_status]
 style = "bg:#364153 fg:#ff637e"
-conflicted = '=' # This branch has merge conflicts.
+conflicted = '='                                                                          # This branch has merge conflicts.
 ahead = ''
 behind = ''
 diverged = '󱡷'
@@ -352,3 +352,4 @@ Ubuntu = " "
 Unknown = " "
 Void = " "
 Windows = "󰍲 "
+

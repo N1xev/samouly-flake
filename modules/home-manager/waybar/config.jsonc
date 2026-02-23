@@ -148,7 +148,6 @@
     "on-click-right": "~/.config/waybar/screenrec.sh --silent",
     "exec": "if pgrep -x wl-screenrec > /dev/null 2>&1; then echo '{\"text\":\"⏹\",\"tooltip\":\"Recording (click to stop)\\nRight-click: stop\",\"class\":\"recording\"}'; else echo '{\"text\":\"⏺\",\"tooltip\":\"Start recording (with audio)\\nRight-click: start silent (no audio)\",\"class\":\"ready\"}'; fi",
     "interval": 1,
-    "signal": 8,
     "return-type": "json",
   },
   "custom/voxtype": {
@@ -179,13 +178,13 @@
       "inhibited-notification": "<span foreground='red'><sup></sup></span>",
       "inhibited-none": "",
       "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-      "dnd-inhibited-none": ""
+      "dnd-inhibited-none": "",
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
     "exec": "swaync-client -swb",
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
-    "escape": true
+    "escape": true,
   },
 }
