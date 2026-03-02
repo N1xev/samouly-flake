@@ -10,6 +10,7 @@
     ./widgetFrameworks.nix
     ./programs.nix
     ./vicinae.nix
+    ./theming
   ];
 
   home.sessionVariables = {

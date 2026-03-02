@@ -88,6 +88,7 @@
     grimblast
     papirus-icon-theme
     gimp
+    pywalfox-native
     # ------------------------
     # Nix utilities
     # ------------------------
@@ -104,28 +105,29 @@
     vhs
     freeze
     gemini-cli
-    matugen
     obsidian
     blender
-    kdePackages.dolphin
-    libreoffice-qt
-    # opencode # TODO: undefined reference
 
     # ------------------------
     # Development tools
     # ------------------------
     git
+    gh
+    gh-dash
     neovim
     neovide
     vscode
+    claude-code
+    ollama
     jetbrains.webstorm
     ghostty
-    wezterm
     vim
     fish
     nushell
     wget
     pkg-config
+    bruno
+
     # Go
     go
     gopls
@@ -149,19 +151,6 @@
     nix-diff
 
     # GTK4/Cairo development libraries (bar dependencies)
-    glib
-    glib.dev
-    gobject-introspection
-    gobject-introspection.dev
-    cairo
-    cairo.dev
-    gdk-pixbuf
-    gdk-pixbuf.dev
-    atk
-    atk.dev
-    pango
-    pango.dev
-    wayland.dev
     gammastep
     fluent-gtk-theme
     colloid-gtk-theme
@@ -174,6 +163,7 @@
     # ------------------------
     nerd-fonts.fira-code
     nerd-fonts.geist-mono
+    geist-font
     nerd-fonts.jetbrains-mono
     nerd-fonts.comic-shanns-mono
     comic-mono
@@ -185,7 +175,7 @@
     inter
     material-symbols
     comic-mono
-    monaspace
+    nerd-fonts.monaspace
 
     # ------------------------
     # Multimedia & streaming
@@ -195,9 +185,9 @@
     # ------------------------
     # Communication
     # ------------------------
-    legcord
+    arrpc
     vesktop
-    discord
+    telegram-desktop
     zapzap
     google-chrome
     brave

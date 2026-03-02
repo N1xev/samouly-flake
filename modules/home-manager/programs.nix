@@ -2,11 +2,24 @@
 {
 
   programs = {
+    zoxide = {
+      enable = true;
+    };
+
     git = {
       enable = true;
       settings = {
         user.name = "N1xev";
         user.email = "alasamouly@gmail.com";
+        url."git@github.com:".insteadOf = "https://github.com/";
+      };
+    };
+
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      matchBlocks."*" = {
+        addKeysToAgent = "yes";
       };
     };
 
@@ -31,7 +44,7 @@
 
       initExtra = ''
         if [[ -z "$TMUX" && $- == *i* ]]; then
-          tmux attach-session -t default 2>/dev/null || tmux new-session -s default
+          tmux attach
         fi
       '';
     };
@@ -39,7 +52,7 @@
     nushell = {
       extraConfig = ''
         if ($env | get -i TMUX | is-empty) {
-          try { tmux attach-session -t default } catch { tmux new-session -s default }
+          try { tmux attach } catch { tmux new-session -s default }
         }
       '';
       shellAliases = {
@@ -77,8 +90,14 @@
         set -gx LIBVA_DRIVER_NAME iHD
         set -gx GBM_BACKEND nvidia-drm
         set completion_dir $HOME/.config/fish/completions
+
+        # Use matugen-generated starship config if available
+        if test -f ~/.cache/matugen/starship.toml
+          set -gx STARSHIP_CONFIG ~/.cache/matugen/starship.toml
+        end
+
         if not set -q TMUX
-         tmux attach-session -t default 2>/dev/null; or tmux new-session -s default
+         tmux attach
         end
         if test -d $completion_dir
           for file in $completion_dir/*.fish

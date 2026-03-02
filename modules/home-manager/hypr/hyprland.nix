@@ -237,6 +237,7 @@ _: {
       exec-once = [
         "swaybg -i ~/Pictures/wallpaper.jpg -m fill &"
         "vicinae server &"
+        "waybar &"
       ];
 
       gesture = [ "3, horizontal, workspace" ];

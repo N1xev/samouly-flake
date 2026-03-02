@@ -71,7 +71,7 @@ disabled = true
 show_always = true
 style_user = "bg:#ff637e fg:#030712"
 style_root = "bg:#ff637e fg:#030712"
-format = '[ $user]($style)'
+format = '[$user]($style)'
 disabled = false
 
 

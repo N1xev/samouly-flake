@@ -1,0 +1,163 @@
+/**
+ * @name system24
+ * @description a tui-style discord theme.
+ * @author refact0r
+ * @version 2.0.0
+ * @invite nz87hXyvcy
+ * @website https://github.com/refact0r/system24
+ * @source https://github.com/refact0r/system24/blob/master/theme/system24.theme.css
+ * @authorId 508863359777505290
+ * @authorLink https://www.refact0r.dev
+ */
+
+/* import theme modules */
+@import url('https://refact0r.github.io/system24/build/system24.css');
+
+/* import matugen colors */
+@import url("file:///home/samouly/.cache/matugen/colors.css");
+
+body {
+    /* font, change to '' for default discord font */
+    --font: 'MonaspiceKr Nerd Font', monospace;
+    --code-font: 'MonaspiceRn Nerd Font Mono', monospace;
+    font-weight: 300;
+    letter-spacing: -0.05ch;
+
+    /* sizes */
+    --gap: 12px;
+    --divider-thickness: 4px;
+    --border-thickness: 2px;
+    --border-hover-transition: 0.2s ease;
+
+    /* animation/transition options */
+    --animations: on;
+    --list-item-transition: 0.2s ease;
+    --dms-icon-svg-transition: 0.4s ease;
+
+    /* top bar options */
+    --top-bar-height: var(--gap);
+    --top-bar-button-position: titlebar;
+    --top-bar-title-position: off;
+    --subtle-top-bar-title: off;
+
+    /* window controls */
+    --custom-window-controls: off;
+    --window-control-size: 14px;
+
+    /* dms button options */
+    --custom-dms-icon: off;
+    --dms-icon-svg-url: url('');
+    --dms-icon-svg-size: 90%;
+    --dms-icon-color-before: var(--icon-subtle);
+    --dms-icon-color-after: var(--white);
+    --custom-dms-background: off;
+    --dms-background-image-url: url('');
+    --dms-background-image-size: cover;
+    --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2));
+
+    /* background image options */
+    --background-image: off;
+    --background-image-url: url('');
+
+    /* transparency/blur options */
+    --transparency-tweaks: off;
+    --remove-bg-layer: off;
+    --panel-blur: off;
+    --blur-amount: 12px;
+    --bg-floating: var(--bg-3);
+
+    /* other options */
+    --small-user-panel: on;
+
+    /* unrounding options */
+    --unrounding: on;
+
+    /* styling options */
+    --custom-spotify-bar: on;
+    --ascii-titles: on;
+    --ascii-loader: system24;
+
+    /* panel labels */
+    --panel-labels: on;
+    --label-color: var(--text-muted);
+    --label-font-weight: 500;
+}
+
+/* color options */
+:root {
+    --colors: on;
+
+    /* text colors */
+    --text-0: var(--bg-4);
+    --text-1: oklch(95% 0 0);
+    --text-2: oklch(85% 0 0);
+    --text-3: oklch(75% 0 0);
+    --text-4: oklch(60% 0 0);
+    --text-5: oklch(40% 0 0);
+
+    /* background and dark colors - using matugen */
+    --bg-1: {{colors.surface_container_high.dark.hex}};
+    --bg-2: {{colors.surface_container.dark.hex}};
+    --bg-3: {{colors.surface_container_low.dark.hex}};
+    --bg-4: {{colors.surface.dark.hex}};
+    --hover: oklch(54% 0 0 / 0.1);
+    --active: oklch(54% 0 0 / 0.2);
+    --active-2: oklch(54% 0 0 / 0.3);
+    --message-hover: var(--hover);
+
+    /* accent colors - using matugen */
+    --accent-1: {{colors.primary.dark.hex}};
+    --accent-2: {{colors.primary_container.dark.hex}};
+    --accent-3: {{colors.primary.dark.hex}};
+    --accent-4: {{colors.primary.dark.hex}};
+    --accent-5: {{colors.primary.dark.hex}};
+    --accent-new: {{colors.error.dark.hex}};
+    --mention: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 90%) 40%, transparent);
+    --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 95%) 40%, transparent);
+    --reply: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent);
+    --reply-hover: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent);
+
+    /* status indicator colors */
+    --online: {{colors.secondary.dark.hex}};
+    --dnd: {{colors.error.dark.hex}};
+    --idle: {{colors.tertiary.dark.hex}};
+    --streaming: {{colors.primary.dark.hex}};
+    --offline: var(--text-4);
+
+    /* border colors */
+    --border-light: var(--hover);
+    --border: var(--active);
+    --border-hover: var(--accent-2);
+    --button-border: hsl(220, 0%, 100%, 0.1);
+
+    /* base colors */
+    --red-1: {{colors.error.dark.hex}};
+    --red-2: {{colors.error.dark.hex}};
+    --red-3: oklch(65% 0.13 0);
+    --red-4: oklch(60% 0.13 0);
+    --red-5: oklch(55% 0.13 0);
+
+    --green-1: {{colors.secondary.dark.hex}};
+    --green-2: {{colors.secondary.dark.hex}};
+    --green-3: oklch(65% 0.12 170);
+    --green-4: oklch(60% 0.12 170);
+    --green-5: oklch(55% 0.12 160);
+
+    --blue-1: {{colors.primary.dark.hex}};
+    --blue-2: {{colors.primary.dark.hex}};
+    --blue-3: oklch(65% 0.11 215);
+    --blue-4: oklch(60% 0.11 215);
+    --blue-5: oklch(55% 0.11 215);
+
+    --yellow-1: {{colors.tertiary.dark.hex}};
+    --yellow-2: {{colors.tertiary.dark.hex}};
+    --yellow-3: oklch(70% 0.12 90);
+    --yellow-4: oklch(65% 0.12 90);
+    --yellow-5: oklch(60% 0.12 90);
+
+    --purple-1: {{colors.primary.dark.hex}};
+    --purple-2: {{colors.primary_container.dark.hex}};
+    --purple-3: oklch(65% 0.12 310);
+    --purple-4: oklch(60% 0.12 310);
+    --purple-5: oklch(55% 0.12 310);
+}

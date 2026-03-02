@@ -1,34 +1,34 @@
 @import "./colors.css";
 
 * {
-  background-color: @background;
-  color: @foreground;
+    background-color: @background;
+    color: @foreground;
 
-  border: none;
-  border-radius: 0;
-  min-height: 0;
-  font-family: "ComicShannsMono Nerd Font Mono";
-  font-size: 14px;
-  font-weight: 800;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    font-family: "MonaspiceRn Nerd Font Mono", monospace;
+    font-size: 12px;
+    font-weight: 800;
 }
 
 .modules-left {
-  margin-left: 8px;
+    margin-left: 8px;
 }
 
 .modules-right {
-  margin-right: 8px;
+    margin-right: 8px;
 }
 
 #workspaces button {
-  all: initial;
-  padding: 0 6px;
-  margin: 0 1.5px;
-  min-width: 9px;
+    all: initial;
+    padding: 0 6px;
+    margin: 0 1.5px;
+    min-width: 9px;
 }
 
 #workspaces button.empty {
-  opacity: 0.5;
+    opacity: 0.5;
 }
 
 #cpu,
@@ -37,84 +37,84 @@
 #custom-omarchy,
 #custom-screenrecording-indicator,
 #custom-update {
-  min-width: 12px;
-  margin: 0 7.5px;
+    min-width: 12px;
+    margin: 0 7.5px;
 }
 
 #tray {
-  margin-right: 16px;
+    margin-right: 16px;
 }
 
 #bluetooth {
-  margin-right: 17px;
+    margin-right: 17px;
 }
 
 #network {
-  margin-right: 13px;
+    margin-right: 13px;
 }
 
 #custom-expand-icon {
-  margin-right: 18px;
+    margin-right: 18px;
 }
 
 tooltip {
-  padding: 2px;
+    padding: 2px;
 }
 
 #custom-update {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 #clock {
-  margin-left: 8.75px;
+    margin-left: 8.75px;
 }
 
 .hidden {
-  opacity: 0;
+    opacity: 0;
 }
 
 #custom-screenrecording-indicator {
-  min-width: 12px;
-  margin: 0 7.5px;
-  font-size: 17px;
-  font-weight: 800;
-  padding-bottom: 1px;
+    min-width: 12px;
+    margin: 0 7.5px;
+    font-size: 17px;
+    font-weight: 800;
+    padding-bottom: 1px;
 }
 
 #custom-screenrecording-indicator.recording {
-  color: #ff5555;
-  animation: pulse 1s ease-in-out infinite;
+    color: @error;
+    animation: pulse 1s ease-in-out infinite;
 }
 
 #custom-screenrecording-indicator.ready {
-  color: @foreground;
-  opacity: 0.8;
+    color: @foreground;
+    opacity: 0.8;
 }
 
 #custom-screenrecording-indicator.ready:hover {
-  color: #a6e3a1;
-  opacity: 1;
+    color: @success;
+    opacity: 1;
 }
 
 @keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 #custom-voxtype {
-  min-width: 12px;
-  margin: 0 0 0 7.5px;
+    min-width: 12px;
+    margin: 0 0 0 7.5px;
 }
 
 #custom-voxtype.recording {
-  color: #a55555;
+    color: @error;
 }
 
 #custom-omarchy,
@@ -126,56 +126,56 @@ tooltip {
 #bluetooth,
 #pulseaudio,
 #workspaces button {
-  font-size: 17px;
-  font-weight: 800;
+    font-size: 17px;
+    font-weight: 800;
 }
 
 #custom-screenrecording-indicator {
-  min-width: 20px;
-  margin: 0 7.5px;
-  padding: 0 4px;
+    min-width: 20px;
+    margin: 0 7.5px;
+    padding: 0 4px;
 }
 
 #custom-screenrecording-indicator.recording {
-  color: #ff4444;
-  background-color: rgba(255, 68, 68, 0.15);
-  animation: pulse-recording 1.5s ease-in-out infinite;
+    color: @error;
+    background-color: rgba(255, 68, 68, 0.15);
+    animation: pulse-recording 1.5s ease-in-out infinite;
 }
 
 #custom-screenrecording-indicator.ready {
-  color: #a6e3a1;
-  opacity: 0.9;
+    color: @success;
+    opacity: 0.9;
 }
 
 #custom-screenrecording-indicator.ready:hover {
-  color: #a6e3a1;
-  background-color: rgba(166, 227, 161, 0.15);
-  opacity: 1;
+    color: @success;
+    background-color: rgba(166, 227, 161, 0.15);
+    opacity: 1;
 }
 
 @keyframes pulse-recording {
-  0% {
-    opacity: 1;
-    background-color: rgba(255, 68, 68, 0.2);
-  }
-  50% {
-    opacity: 0.7;
-    background-color: rgba(255, 68, 68, 0.05);
-  }
-  100% {
-    opacity: 1;
-    background-color: rgba(255, 68, 68, 0.2);
-  }
+    0% {
+        opacity: 1;
+        background-color: rgba(255, 68, 68, 0.2);
+    }
+    50% {
+        opacity: 0.7;
+        background-color: rgba(255, 68, 68, 0.05);
+    }
+    100% {
+        opacity: 1;
+        background-color: rgba(255, 68, 68, 0.2);
+    }
 }
 
 #battery {
-  font-size: 17px;
-  font-weight: 800;
+    font-size: 17px;
+    font-weight: 800;
 }
 
 #custom-notification {
-  min-width: 12px;
-  margin: 0 7.5px;
-  font-size: 17px;
-  font-weight: 800;
+    min-width: 12px;
+    margin: 0 7.5px;
+    font-size: 17px;
+    font-weight: 800;
 }

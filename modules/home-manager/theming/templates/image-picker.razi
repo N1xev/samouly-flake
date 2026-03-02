@@ -1,0 +1,173 @@
+configuration {
+    modi: "drun";
+    show-icons: true;
+    display-drun: "Apps";
+    drun-display-format: "{name}";
+}
+
+* {
+    background: {{colors.surface.dark.hex}};
+    background-alt: {{colors.surface_container.dark.hex}};
+    foreground: {{colors.on_surface.dark.hex}};
+    selected: {{colors.primary.dark.hex}};
+    active: {{colors.tertiary.dark.hex}};
+    urgent: {{colors.error.dark.hex}};
+    font: "MonaspiceKr Nerd Font 14";
+}
+
+window {
+    transparency: "real";
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    width: 100%;
+    enabled: true;
+    margin: 0px;
+    padding: 0px;
+    border: 0px solid;
+    border-radius: 0px;
+    border-color: {{colors.primary.dark.hex}};
+    background-color: {{colors.surface.dark.hex}};
+    cursor: default;
+}
+
+mainbox {
+    enabled: true;
+    spacing: 20px;
+    margin: 0px;
+    padding: 50px;
+    border: 0px solid;
+    border-radius: 0px 0px 0px 0px;
+    border-color: {{colors.primary.dark.hex}};
+    background-color: {{colors.surface.dark.hex}};
+    children: [ "inputbar", "listview" ];
+}
+
+inputbar {
+    enabled: true;
+    spacing: 20px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    border-radius: 0px;
+    border-color: {{colors.primary.dark.hex}};
+    background-color: {{colors.surface.dark.hex}};
+    text-color: {{colors.on_surface.dark.hex}};
+    children: [ "prompt", "entry" ];
+}
+
+prompt {
+    enabled: true;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: {{colors.primary.dark.hex}};
+    text-color: {{colors.on_primary.dark.hex}};
+}
+
+textbox-prompt-colon {
+    enabled: true;
+    expand: false;
+    str: "::";
+    background-color: inherit;
+    text-color: inherit;
+}
+
+entry {
+    enabled: true;
+    expand: false;
+    width: 350px;
+    padding: 15px 20px;
+    border-radius: 15px;
+    background-color: {{colors.surface_container.dark.hex}};
+    text-color: {{colors.on_surface.dark.hex}};
+    cursor: text;
+    placeholder: "Search...";
+    placeholder-color: inherit;
+}
+
+listview {
+    enabled: true;
+    columns: 2;
+    lines: 2;
+    cycle: true;
+    dynamic: true;
+    scrollbar: false;
+    layout: vertical;
+    reverse: false;
+    fixed-height: true;
+    fixed-columns: true;
+    spacing: 0px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px solid;
+    border-radius: 0px;
+    border-color: {{colors.primary.dark.hex}};
+    background-color: transparent;
+    text-color: {{colors.on_surface.dark.hex}};
+    cursor: default;
+}
+
+scrollbar {
+    handle-width: 5px;
+    handle-color: {{colors.primary.dark.hex}};
+    border-radius: 0px;
+    background-color: {{colors.surface_container.dark.hex}};
+}
+
+element {
+    enabled: true;
+    spacing: 20px;
+    margin: 0px;
+    padding: 30px 10px;
+    border: 0px solid;
+    border-radius: 20px;
+    border-color: {{colors.primary.dark.hex}};
+    background-color: {{colors.surface.dark.hex}};
+    text-color: {{colors.on_surface.dark.hex}};
+    orientation: vertical;
+    cursor: pointer;
+}
+
+element normal.normal {
+    background-color: {{colors.surface.dark.hex}};
+    text-color: {{colors.on_surface.dark.hex}};
+}
+
+element selected.normal {
+    background-color: {{colors.surface_container.dark.hex}};
+    text-color: {{colors.on_surface.dark.hex}};
+}
+
+element-icon {
+    padding: 0px 0px 0px 0px;
+    background-color: transparent;
+    text-color: inherit;
+    size: 420px;
+    cursor: inherit;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    highlight: none;
+    cursor: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+}
+
+error-message {
+    padding: 50px;
+    border: 0px solid;
+    border-radius: 0px;
+    border-color: {{colors.primary.dark.hex}};
+    background-color: {{colors.surface.dark.hex}};
+    text-color: {{colors.on_surface.dark.hex}};
+}
+
+textbox {
+    background-color: {{colors.surface.dark.hex}};
+    text-color: {{colors.on_surface.dark.hex}};
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+    highlight: none;
+}

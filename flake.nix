@@ -50,6 +50,10 @@
       url = "github:Bqrry4/sddm-stray";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    matugen = {
+      url = "github:InioX/matugen";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -109,7 +113,6 @@
           ./home-manager/home.nix
           inputs.spicetify-nix.homeManagerModules.default
           inputs.hyprland.homeManagerModules.default
-          # inputs.ax-shell.homeManagerModules.default
           vicinae.homeManagerModules.default
         ];
         extraSpecialArgs = {

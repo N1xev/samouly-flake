@@ -1,6 +1,10 @@
 { pkgs, inputs, ... }:
 
 {
+  fonts.packages = with pkgs; [
+    nerd-fonts.monaspace
+  ];
+
   environment.systemPackages = with pkgs; [
     (discord.override { withVencord = true; })
     inputs.sddm-stray.packages.${pkgs.stdenv.hostPlatform.system}.default
