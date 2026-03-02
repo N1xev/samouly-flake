@@ -1,1 +1,0 @@
-Consolidated nixpkgs configuration in flake.nix. Removed nixpkgs.config and nixpkgs.overlays from nixos/configuration.nix and home-manager/home.nix. This prevents issues with Home Manager and ensures a single source of truth for package configuration and overlays.
