@@ -143,7 +143,6 @@ _: {
         "$mainMod, V, togglefloating"
         "$mainMod, D, exec, $menu"
         "$mainMod, P, pseudo"
-        "$mainMod, J, togglesplit"
         # Focus movement
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
@@ -235,9 +234,10 @@ _: {
 
       # Autostart
       exec-once = [
-        "swaybg -i ~/Pictures/wallpaper.jpg -m fill &"
+        "vesktop"
         "vicinae server &"
         "waybar &"
+        "wl-paste --watch cliphist store &"
       ];
 
       gesture = [ "3, horizontal, workspace" ];

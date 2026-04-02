@@ -10,7 +10,6 @@
     niri-flake = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -75,13 +74,13 @@
         inherit system;
         config = {
           allowUnfree = true;
+          allowUnsupportedSystem = true;
           permittedInsecurePackages = [
             "electron-36.9.5"
             "ventoy-full-gtk3"
           ];
         };
         overlays = [
-          (import ./overlays/vscode.nix)
           (import ./overlays/material-icons.nix)
         ];
       };

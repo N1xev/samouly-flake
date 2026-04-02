@@ -86,7 +86,7 @@
       enable = true;
       libraries = with pkgs; [
         opencode
-      ]; # TODO: undefined reference
+      ];
     };
   };
 

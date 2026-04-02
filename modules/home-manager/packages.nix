@@ -115,9 +115,15 @@
     gh
     gh-dash
     neovim
+    emacs
     neovide
-    vscode
+    vscode-fhs
+    zed-editor
+    code-cursor
     claude-code
+    codex
+    crush
+    opencode-desktop
     ollama
     jetbrains.webstorm
     ghostty
@@ -133,11 +139,12 @@
     gopls
     # Rust
     rustc
-    cargo
+    rustup
     # C / C++
     cmake
     gcc
     clang-tools
+    gnumake
     # Web dev
     vercel-pkg
     nodejs
@@ -145,6 +152,9 @@
     cypress
     playwright-test
     postgresql
+
+    just
+    gnupg
 
     # Nix stuff
     statix
@@ -192,6 +202,10 @@
     google-chrome
     brave
     browsh
+
+    ### misc
+    libxcb
+    libxkbcommon
     # ------------------------
     # Inputs (flakes)
     # ------------------------

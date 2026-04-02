@@ -24,5 +24,6 @@
     glib.dev
     gobject-introspection.dev
     ntfs3g
+    notion-app
   ];
 }
