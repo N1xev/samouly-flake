@@ -10,6 +10,9 @@ _: {
       ];
     };
     settings = {
+      windowrule = [
+        "match:class .scrcpy-wrapped, size 499 1080"
+      ];
       env = [
         "WLR_NO_HARDWARE_CURSORS,1"
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
@@ -64,7 +67,7 @@ _: {
       general = {
         gaps_in = 3;
         gaps_out = 10;
-        border_size = 1;
+        border_size = 0;
         "col.active_border" = "rgba(ff637eee) rgba(4d0218ee) 45deg";
         "col.inactive_border" = "rgba(4a5565aa)";
         resize_on_border = false;
@@ -75,9 +78,9 @@ _: {
 
       # Decoration settings (optimized for performance)
       decoration = {
-        rounding = 0;
-        active_opacity = 0.9;
-        inactive_opacity = 0.85;
+        rounding = 15;
+        active_opacity = 1;
+        inactive_opacity = 1;
         shadow = {
           enabled = false;
           range = 4;
@@ -85,7 +88,7 @@ _: {
           color = "rgba(1a1a1aee)";
         };
         blur = {
-          enabled = true;
+          enabled = false;
           size = 10;
           passes = 5;
           vibrancy = 0.1696;
@@ -196,16 +199,16 @@ _: {
 
         # test notifications
         # F12 - Short wisdom quote
-        "SUPER_ALT, F12, exec, notify-send -i /home/samouly/Downloads/llama.webp 'Daily Wisdom' 'The journey of a thousand miles begins with a single step.' -u normal"
+        "SUPER_ALT, F12, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Daily Wisdom' 'The journey of a thousand miles begins with a single step.' -u normal"
 
         # F11 - Long motivational message
-        "SUPER_ALT, F11, exec, notify-send -i /home/samouly/Downloads/llama.webp 'Motivation' 'Success is not final, failure is not fatal: it is the courage to continue that counts. Keep pushing forward, embrace challenges, and never stop learning. Your potential is limitless when you believe in yourself.' -u normal"
+        "SUPER_ALT, F11, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Motivation' 'Success is not final, failure is not fatal: it is the courage to continue that counts. Keep pushing forward, embrace challenges, and never stop learning. Your potential is limitless when you believe in yourself.' -u normal"
 
         # F10 - Notification with 2 action buttons
-        "SUPER_ALT, F10, exec, notify-send -i /home/samouly/Downloads/llama.webp 'Quick Actions' 'Choose your next move' --action='work=Start Working' --action='break=Take Break' -u normal"
+        "SUPER_ALT, F10, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Quick Actions' 'Choose your next move' --action='work=Start Working' --action='break=Take Break' -u normal"
 
         # F9 - Notification with multiple action buttons
-        "SUPER_ALT, F9, exec, notify-send -i /home/samouly/Downloads/llama.webp 'Control Panel' 'What would you like to do?' --action='code=Open VSCode' --action='browser=Open Browser' --action='terminal=Open Terminal' --action='shutdown=Shutdown' -u critical"
+        "SUPER_ALT, F9, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Control Panel' 'What would you like to do?' --action='code=Open VSCode' --action='browser=Open Browser' --action='terminal=Open Terminal' --action='shutdown=Shutdown' -u critical"
       ];
 
       # Mouse bindings
