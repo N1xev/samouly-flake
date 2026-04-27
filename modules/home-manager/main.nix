@@ -7,7 +7,7 @@
     ./hypr/hyprland.nix
     ./ghostty/config.nix
     ./tmux/config.nix
-    ./widgetFrameworks.nix
+    # ./widgetFrameworks.nix
     ./programs.nix
     ./vicinae.nix
     ./theming
