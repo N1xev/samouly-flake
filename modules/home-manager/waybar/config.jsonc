@@ -7,7 +7,7 @@
   "modules-left": ["custom/omarchy", "hyprland/workspaces"],
   "modules-center": [
     "clock",
-    "custom/voxtype",
+    // "custom/voxtype",
     "custom/screenrecording-indicator",
   ],
   "modules-right": [
@@ -150,19 +150,19 @@
     "interval": 1,
     "return-type": "json",
   },
-  "custom/voxtype": {
-    "exec": "omarchy-voxtype-status",
-    "return-type": "json",
-    "format": "{icon}",
-    "format-icons": {
-      "idle": "",
-      "recording": "󰍬",
-      "transcribing": "󰔟",
-    },
-    "tooltip": true,
-    "on-click-right": "omarchy-voxtype-config",
-    "on-click": "omarchy-voxtype-model",
-  },
+  // "custom/voxtype": {
+  //   "exec": "voxtype",
+  //   "return-type": "json",
+  //   "format": "{icon}",
+  //   "format-icons": {
+  //     "idle": "",
+  //     "recording": "󰍬",
+  //     "transcribing": "󰔟",
+  //   },
+  //   "tooltip": true,
+  //   "on-click-right": "omarchy-voxtype-config",
+  //   "on-click": "voxtype",
+  // },
   "tray": {
     "icon-size": 12,
     "spacing": 17,
