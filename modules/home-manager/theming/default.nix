@@ -11,7 +11,7 @@ let
   stateDir = "${config.xdg.stateHome}/matugen";
   cacheDir = "${config.xdg.cacheHome}/matugen";
   templates = ./templates;
-  matugenBin = "${inputs.matugen.packages.${pkgs.system}.default}/bin/matugen";
+  matugenBin = "${inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/matugen";
 
   configToml = pkgs.writeText "matugen-config.toml" ''
     [config]
@@ -72,15 +72,47 @@ let
     [templates.neovim]
     input_path = "${templates}/neovim.lua"
     output_path = "${config.xdg.configHome}/nvim/generated.lua"
+
+    [templates.fabric-nix]
+    input_path = "${templates}/fabric-colors.css"
+    output_path = "${cacheDir}/fabric-colors.css"
   '';
 
   set-wallpaper = pkgs.writeShellScriptBin "set-wallpaper" ''
     #!/usr/bin/env bash
     set -e
 
-    WALLPAPER="''${1:-}"
+    # Default mode is dark
+    MODE="dark"
+
+    # Parse command line arguments
+    while [ $# -gt 0 ]; do
+      case "$1" in
+        --light)
+          MODE="light"
+          shift
+          ;;
+        --dark)
+          MODE="dark"
+          shift
+          ;;
+        -h|--help)
+          echo "Usage: set-wallpaper <path-to-wallpaper> [--light|--dark]"
+          echo ""
+          echo "Options:"
+          echo "  --light    Use light mode"
+          echo "  --dark     Use dark mode (default)"
+          exit 0
+          ;;
+        *)
+          WALLPAPER="$1"
+          shift
+          ;;
+      esac
+    done
+
     if [ -z "$WALLPAPER" ]; then
-      echo "Usage: set-wallpaper <path-to-wallpaper>"
+      echo "Usage: set-wallpaper <path-to-wallpaper> [--light|--dark]"
       exit 1
     fi
 
@@ -102,12 +134,15 @@ let
     mkdir -p "${config.xdg.configHome}/legcord/themes/matugen"
     mkdir -p "${config.xdg.configHome}/walker/themes/matugen"
     mkdir -p "${config.xdg.configHome}/nvim"
+    mkdir -p "$HOME/Projects/fabric-nix/src/style"
 
+    # Save wallpaper path and mode to state file
     echo "$WALLPAPER" > "${stateDir}/current-wallpaper"
+    echo "$MODE" > "${stateDir}/current-mode"
 
     ${matugenBin} image "$WALLPAPER" \
       --config "${configToml}" \
-      --mode dark \
+      --mode "$MODE" \
       --type scheme-tonal-spot \
       --prefer=darkness \
       2>&1
@@ -116,9 +151,12 @@ let
     cp "${cacheDir}/qtct-colors.conf" "${config.xdg.configHome}/qt5ct/colors/matugen.conf" 2>/dev/null || true
     cp "${cacheDir}/qtct-colors.conf" "${config.xdg.configHome}/qt6ct/colors/matugen.conf" 2>/dev/null || true
 
+    # Copy fabric-nix colors
+    cp "${cacheDir}/fabric-colors.css" "$HOME/Projects/fabric-nix/src/style/colors.css" 2>/dev/null || true
+
     # Set wallpaper
-    if pgrep -x swww-daemon >/dev/null; then
-      ${pkgs.swww}/bin/swww img "$WALLPAPER" --transition-type fade --transition-duration 1 --fill 2>/dev/null || true
+    if pgrep -x awww-daemon >/dev/null; then
+      ${pkgs.awww}/bin/awww img "$WALLPAPER" --transition-type fade --transition-duration 1 --fill 2>/dev/null || true
     elif pgrep -x swaybg >/dev/null; then
       pkill -x swaybg
       ${pkgs.swaybg}/bin/swaybg -i "$WALLPAPER" -m fill &
@@ -128,9 +166,15 @@ let
 
     # Reload GTK theme
     if command -v gsettings &>/dev/null; then
-      gsettings set org.gnome.desktop.interface gtk-theme "" 2>/dev/null || true
-      gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3-dark" 2>/dev/null || true
-      gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" 2>/dev/null || true
+      if [ "$MODE" = "light" ]; then
+        gsettings set org.gnome.desktop.interface gtk-theme "" 2>/dev/null || true
+        gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3" 2>/dev/null || true
+        gsettings set org.gnome.desktop.interface color-scheme "prefer-light" 2>/dev/null || true
+      else
+        gsettings set org.gnome.desktop.interface gtk-theme "" 2>/dev/null || true
+        gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3-dark" 2>/dev/null || true
+        gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" 2>/dev/null || true
+      fi
     fi
 
     # Reload Kvantum if using it
@@ -192,7 +236,7 @@ in
       packages = [
         set-wallpaper
         wallpaper-picker
-        inputs.matugen.packages.${pkgs.system}.default
+        inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
         pkgs.rofi
         pkgs.imagemagick
         pkgs.swaybg
@@ -209,9 +253,16 @@ in
 
       activation.matugen-generate = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         STATE_FILE="${stateDir}/current-wallpaper"
+        MODE_FILE="${stateDir}/current-mode"
         if [ -f "$STATE_FILE" ]; then
           WALLPAPER=$(cat "$STATE_FILE")
           if [ -f "$WALLPAPER" ]; then
+            # Read mode from state file, default to dark
+            if [ -f "$MODE_FILE" ]; then
+              MODE=$(cat "$MODE_FILE")
+            else
+              MODE="dark"
+            fi
             $DRY_RUN_CMD mkdir -p "${cacheDir}"
             $DRY_RUN_CMD mkdir -p "${config.xdg.dataHome}/color-schemes"
             $DRY_RUN_CMD mkdir -p "${config.xdg.configHome}/Kvantum/Matugen"
@@ -223,13 +274,15 @@ in
             $DRY_RUN_CMD mkdir -p "${config.xdg.configHome}/vesktop/themes"
             $DRY_RUN_CMD mkdir -p "${config.xdg.configHome}/legcord/themes/matugen"
             $DRY_RUN_CMD mkdir -p "${config.xdg.configHome}/nvim"
+            $DRY_RUN_CMD mkdir -p "$HOME/Projects/fabric-nix/src/style"
             $DRY_RUN_CMD ${matugenBin} image "$WALLPAPER" \
               --config "${configToml}" \
-              --mode dark \
+              --mode "$MODE" \
               --type scheme-tonal-spot \
               --prefer=darkness
             $DRY_RUN_CMD cp "${cacheDir}/qtct-colors.conf" "${config.xdg.configHome}/qt5ct/colors/matugen.conf" 2>/dev/null || true
             $DRY_RUN_CMD cp "${cacheDir}/qtct-colors.conf" "${config.xdg.configHome}/qt6ct/colors/matugen.conf" 2>/dev/null || true
+            $DRY_RUN_CMD cp "${cacheDir}/fabric-colors.css" "$HOME/Projects/fabric-nix/src/style/colors.css" 2>/dev/null || true
           fi
         fi
       '';

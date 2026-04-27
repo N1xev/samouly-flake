@@ -6,12 +6,12 @@ configuration {
 }
 
 * {
-    background: {{colors.surface.dark.hex}};
-    background-alt: {{colors.surface_container.dark.hex}};
-    foreground: {{colors.on_surface.dark.hex}};
-    selected: {{colors.primary.dark.hex}};
-    active: {{colors.tertiary.dark.hex}};
-    urgent: {{colors.error.dark.hex}};
+    background: {{colors.surface.default.hex}};
+    background-alt: {{colors.surface_container.default.hex}};
+    foreground: {{colors.on_surface.default.hex}};
+    selected: {{colors.primary.default.hex}};
+    active: {{colors.tertiary.default.hex}};
+    urgent: {{colors.error.default.hex}};
     font: "MonaspiceKr Nerd Font 14";
 }
 
@@ -26,8 +26,8 @@ window {
     padding: 0px;
     border: 0px solid;
     border-radius: 0px;
-    border-color: {{colors.primary.dark.hex}};
-    background-color: {{colors.surface.dark.hex}};
+    border-color: {{colors.primary.default.hex}};
+    background-color: {{colors.surface.default.hex}};
     cursor: default;
 }
 
@@ -38,8 +38,8 @@ mainbox {
     padding: 50px;
     border: 0px solid;
     border-radius: 0px 0px 0px 0px;
-    border-color: {{colors.primary.dark.hex}};
-    background-color: {{colors.surface.dark.hex}};
+    border-color: {{colors.primary.default.hex}};
+    background-color: {{colors.surface.default.hex}};
     children: [ "inputbar", "listview" ];
 }
 
@@ -50,9 +50,9 @@ inputbar {
     padding: 0px;
     border: 0px;
     border-radius: 0px;
-    border-color: {{colors.primary.dark.hex}};
-    background-color: {{colors.surface.dark.hex}};
-    text-color: {{colors.on_surface.dark.hex}};
+    border-color: {{colors.primary.default.hex}};
+    background-color: {{colors.surface.default.hex}};
+    text-color: {{colors.on_surface.default.hex}};
     children: [ "prompt", "entry" ];
 }
 
@@ -60,8 +60,8 @@ prompt {
     enabled: true;
     padding: 15px;
     border-radius: 15px;
-    background-color: {{colors.primary.dark.hex}};
-    text-color: {{colors.on_primary.dark.hex}};
+    background-color: {{colors.primary.default.hex}};
+    text-color: {{colors.on_primary.default.hex}};
 }
 
 textbox-prompt-colon {
@@ -78,8 +78,8 @@ entry {
     width: 350px;
     padding: 15px 20px;
     border-radius: 15px;
-    background-color: {{colors.surface_container.dark.hex}};
-    text-color: {{colors.on_surface.dark.hex}};
+    background-color: {{colors.surface_container.default.hex}};
+    text-color: {{colors.on_surface.default.hex}};
     cursor: text;
     placeholder: "Search...";
     placeholder-color: inherit;
@@ -101,17 +101,17 @@ listview {
     padding: 0px;
     border: 0px solid;
     border-radius: 0px;
-    border-color: {{colors.primary.dark.hex}};
+    border-color: {{colors.primary.default.hex}};
     background-color: transparent;
-    text-color: {{colors.on_surface.dark.hex}};
+    text-color: {{colors.on_surface.default.hex}};
     cursor: default;
 }
 
 scrollbar {
     handle-width: 5px;
-    handle-color: {{colors.primary.dark.hex}};
+    handle-color: {{colors.primary.default.hex}};
     border-radius: 0px;
-    background-color: {{colors.surface_container.dark.hex}};
+    background-color: {{colors.surface_container.default.hex}};
 }
 
 element {
@@ -121,21 +121,21 @@ element {
     padding: 30px 10px;
     border: 0px solid;
     border-radius: 20px;
-    border-color: {{colors.primary.dark.hex}};
-    background-color: {{colors.surface.dark.hex}};
-    text-color: {{colors.on_surface.dark.hex}};
+    border-color: {{colors.primary.default.hex}};
+    background-color: {{colors.surface.default.hex}};
+    text-color: {{colors.on_surface.default.hex}};
     orientation: vertical;
     cursor: pointer;
 }
 
 element normal.normal {
-    background-color: {{colors.surface.dark.hex}};
-    text-color: {{colors.on_surface.dark.hex}};
+    background-color: {{colors.surface.default.hex}};
+    text-color: {{colors.on_surface.default.hex}};
 }
 
 element selected.normal {
-    background-color: {{colors.surface_container.dark.hex}};
-    text-color: {{colors.on_surface.dark.hex}};
+    background-color: {{colors.surface_container.default.hex}};
+    text-color: {{colors.on_surface.default.hex}};
 }
 
 element-icon {
@@ -159,14 +159,14 @@ error-message {
     padding: 50px;
     border: 0px solid;
     border-radius: 0px;
-    border-color: {{colors.primary.dark.hex}};
-    background-color: {{colors.surface.dark.hex}};
-    text-color: {{colors.on_surface.dark.hex}};
+    border-color: {{colors.primary.default.hex}};
+    background-color: {{colors.surface.default.hex}};
+    text-color: {{colors.on_surface.default.hex}};
 }
 
 textbox {
-    background-color: {{colors.surface.dark.hex}};
-    text-color: {{colors.on_surface.dark.hex}};
+    background-color: {{colors.surface.default.hex}};
+    text-color: {{colors.on_surface.default.hex}};
     vertical-align: 0.5;
     horizontal-align: 0.0;
     highlight: none;

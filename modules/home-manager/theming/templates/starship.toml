@@ -9,19 +9,19 @@ command_timeout = 3000
 # Note: Not supported in Powershell
 # @see: https://starship.rs/advanced-config/#enable-right-prompt
 right_format = """
-[](bg:transparent fg:{{colors.surface.dark.hex}})\
+[](bg:transparent fg:{{colors.surface.default.hex}})\
 $time\
 $memory_usage\
-[](fg:{{colors.surface.dark.hex}} bg:transparent)\
+[](fg:{{colors.surface.default.hex}} bg:transparent)\
 """
 
 # Left prompt. This is displayed on the left side of the terminal.
 # Colours (i.e. bg and fg) are always listed from left to right.
 format = """
-[](bg:#transparent fg:{{colors.primary.dark.hex}})\
+[](bg:#transparent fg:{{colors.primary.default.hex}})\
 $os\
 $username\
-[](fg:{{colors.primary.dark.hex}} bg:{{colors.surface.dark.hex}})\
+[](fg:{{colors.primary.default.hex}} bg:{{colors.surface.default.hex}})\
 $directory\
 ${custom.pregit}\
 $git_branch\
@@ -47,7 +47,7 @@ $scala\
 $docker_context\
 $character\
 $line_break\
-[  ](bold fg:{{colors.primary.dark.hex}})\
+[  ](bold fg:{{colors.primary.default.hex}})\
 """
 
 ########################
@@ -56,34 +56,34 @@ $line_break\
 
 # Exit code indicator
 [character] # The name of the module we are configuring is 'character'
-success_symbol = '[](bg:{{colors.surface_container.dark.hex}} fg:{{colors.primary.dark.hex}})[󱇫](bg:{{colors.primary.dark.hex}} fg:{{colors.background.dark.hex}})[](fg:{{colors.primary.dark.hex}} bg:transparent)'
-error_symbol = '[](bg:{{colors.surface_container.dark.hex}} fg:{{colors.secondary.dark.hex}})[󱇫](bg:{{colors.secondary.dark.hex}} fg:{{colors.error_container.dark.hex}})[](fg:{{colors.secondary.dark.hex}} bg:transparent)'
+success_symbol = '[](bg:{{colors.surface_container.default.hex}} fg:{{colors.primary.default.hex}})[󱇫](bg:{{colors.primary.default.hex}} fg:{{colors.background.default.hex}})[](fg:{{colors.primary.default.hex}} bg:transparent)'
+error_symbol = '[](bg:{{colors.surface_container.default.hex}} fg:{{colors.secondary.default.hex}})[󱇫](bg:{{colors.secondary.default.hex}} fg:{{colors.error_container.default.hex}})[](fg:{{colors.secondary.default.hex}} bg:transparent)'
 format = '$symbol '
 
 # cross-platform way to check if we are in a git repo, takes 200ms
 [custom.nogit]
 when = ''' git rev-parse --git-dir ; test $? = False '''
-format = '[ ](bg:{{colors.surface.dark.hex}})'
+format = '[ ](bg:{{colors.surface.default.hex}})'
 disabled = true
 
 # Either `Administrator`, `root` or the current user's username.
 [username]
 show_always = true
-style_user = "bg:{{colors.primary.dark.hex}} fg:{{colors.background.dark.hex}}"
-style_root = "bg:{{colors.primary.dark.hex}} fg:{{colors.background.dark.hex}}"
+style_user = "bg:{{colors.primary.default.hex}} fg:{{colors.background.default.hex}}"
+style_root = "bg:{{colors.primary.default.hex}} fg:{{colors.background.default.hex}}"
 format = '[ $user]($style)'
 disabled = false
 
 
 # Displays a symbol that represents the current operating system
 [os]
-style = "bg:{{colors.primary.dark.hex}} fg:{{colors.background.dark.hex}}"
+style = "bg:{{colors.primary.default.hex}} fg:{{colors.background.default.hex}}"
 format = '[$symbol]($style)'
 disabled = false                # This doesn't work in pwsh in Webstorm terminal.
 
 # The current directory
 [directory]
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
 format = "[ $path ]($style)"
 truncation_length = 1
 truncation_symbol = "…/"
@@ -97,7 +97,7 @@ symbol = "󰍛"
 [time]
 disabled = false
 time_format = "%R"         # Hour:Minute Format
-style = "bg:{{colors.surface.dark.hex}}"
+style = "bg:{{colors.surface.default.hex}}"
 format = '[$time]($style)'
 
 #######################
@@ -107,27 +107,27 @@ format = '[$time]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:{{colors.surface_container.dark.hex}} fg:{{colors.outline.dark.hex}}"
-format = '[](fg:{{colors.surface.dark.hex}} bg:{{colors.surface_container.dark.hex}})[ $symbol](bg:{{colors.surface_container.dark.hex}} fg:{{colors.primary.dark.hex}})[ $branch ]($style)'
+style = "bg:{{colors.surface_container.default.hex}} fg:{{colors.outline.default.hex}}"
+format = '[](fg:{{colors.surface.default.hex}} bg:{{colors.surface_container.default.hex}})[ $symbol](bg:{{colors.surface_container.default.hex}} fg:{{colors.primary.default.hex}})[ $branch ]($style)'
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
-cherry_pick = '[🍒 PICKING ](bg:{{colors.surface_container.dark.hex}} fg:bold red)'
-rebase = '[ REBASING ](bg:{{colors.surface_container.dark.hex}} fg:bold green)'
-merge = '[ MERGING ](bg:{{colors.surface_container.dark.hex}} fg:bold yellow)'
-bisect = '[🔍 BISECTING ](bg:{{colors.surface_container.dark.hex}} fg:bold blue)'
-am = '[AM](bg:{{colors.surface_container.dark.hex}} fg:bold green)'
-am_or_rebase = '[AM/REBASE ](bg:{{colors.surface_container.dark.hex}} fg:bold green)'
-revert = '[󰕍 REVERTING ](bg:{{colors.surface_container.dark.hex}} fg:bold red)'
+cherry_pick = '[🍒 PICKING ](bg:{{colors.surface_container.default.hex}} fg:bold red)'
+rebase = '[ REBASING ](bg:{{colors.surface_container.default.hex}} fg:bold green)'
+merge = '[ MERGING ](bg:{{colors.surface_container.default.hex}} fg:bold yellow)'
+bisect = '[🔍 BISECTING ](bg:{{colors.surface_container.default.hex}} fg:bold blue)'
+am = '[AM](bg:{{colors.surface_container.default.hex}} fg:bold green)'
+am_or_rebase = '[AM/REBASE ](bg:{{colors.surface_container.default.hex}} fg:bold green)'
+revert = '[󰕍 REVERTING ](bg:{{colors.surface_container.default.hex}} fg:bold red)'
 
 [git_metrics]
-added_style = "bg:{{colors.surface_container.dark.hex}} fg:{{colors.secondary.dark.hex}}"
-deleted_style = "bg:{{colors.surface_container.dark.hex}} fg:{{colors.primary.dark.hex}}"
+added_style = "bg:{{colors.surface_container.default.hex}} fg:{{colors.secondary.default.hex}}"
+deleted_style = "bg:{{colors.surface_container.default.hex}} fg:{{colors.primary.default.hex}}"
 format = '([+$added ]($added_style))([-$deleted ]($deleted_style))'
 disabled = false
 
 [git_status]
-style = "bg:{{colors.surface_container.dark.hex}} fg:{{colors.primary.dark.hex}}"
+style = "bg:{{colors.surface_container.default.hex}} fg:{{colors.primary.default.hex}}"
 conflicted = '='                                                                          # This branch has merge conflicts.
 ahead = ''
 behind = ''
@@ -139,7 +139,7 @@ modified = ''
 staged = ''
 renamed = '»'
 deleted = '✘'
-format = '([($all_status )($ahead_behind )]($style))[🔍 BISECTING](bg:{{colors.surface_container.dark.hex}} fg:{{colors.surface.dark.hex}})'
+format = '([($all_status )($ahead_behind )]($style))[🔍 BISECTING](bg:{{colors.surface_container.default.hex}} fg:{{colors.surface.default.hex}})'
 
 [fossil_branch]
 symbol = ""
@@ -156,24 +156,24 @@ symbol = ""
 
 [nodejs]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [bun]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [docker_context]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ (context) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ (context) ]($style)'
 
 [package]
 format = '($style)[> $symbol$version ]($style)'
 symbol = '📦 '
 version_format = 'v${raw}'
-style = 'bold 208 bg:{{colors.surface.dark.hex}}'
+style = 'bold 208 bg:{{colors.surface.default.hex}}'
 display_private = false
 disabled = true
 ################
@@ -182,122 +182,122 @@ disabled = true
 
 [aws]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [c]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [conda]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [dart]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [elixir]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [elm]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [golang]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [gradle]
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [haskell]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [haxe]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [java]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [julia]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [kotlin]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [lua]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [ocaml]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [perl]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [php]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [python]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [rlang]
 symbol = "󰟔"
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [ruby]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [scala]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [swift]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 [zig]
 symbol = ""
-style = "bg:{{colors.surface.dark.hex}} fg:{{colors.on_background.dark.hex}}"
-format = '[$symbol](bg:{{colors.surface.dark.hex}} fg:{{colors.primary.dark.hex}})[ ($version) ]($style)'
+style = "bg:{{colors.surface.default.hex}} fg:{{colors.on_background.default.hex}}"
+format = '[$symbol](bg:{{colors.surface.default.hex}} fg:{{colors.primary.default.hex}})[ ($version) ]($style)'
 
 #############
 #   Other   #

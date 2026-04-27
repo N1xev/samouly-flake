@@ -1,0 +1,85 @@
+/* Fabric Nix Colors - Generated with Matugen */
+/* Maps Material You colors to Rosé Pine-like semantic structure */
+
+:vars {
+  /* ── Matugen Generated Colors ───────────────────────── */
+
+  --background: {{colors.background.default.hex}};                       /* base */
+  --foreground: {{colors.on_background.default.hex}};                    /* text */
+
+  /* Core palette - Terminal colors mapped to Material You */
+  --color0: {{colors.surface.default.hex}};                              /* surface - darkest */
+  --color7: {{colors.on_surface.default.hex}};                           /* on_surface - lightest */
+  --color8: {{colors.outline.default.hex}};                              /* outline - medium */
+  --color15: {{colors.primary.default.hex}};                             /* primary accent */
+
+  /* Primary colors (mapped to love/rose) */
+  --color1: {{colors.primary.default.hex}};                              /* primary */
+  --color9: {{colors.primary_fixed.default.hex}};                        /* primary bright */
+
+  /* Secondary colors (mapped to gold/warm) */
+  --color2: {{colors.secondary.default.hex}};                            /* secondary */
+  --color10: {{colors.secondary_fixed.default.hex}};                     /* secondary bright */
+
+  /* Tertiary colors (mapped to pine/cool) */
+  --color3: {{colors.tertiary.default.hex}};                             /* tertiary */
+  --color11: {{colors.tertiary_fixed.default.hex}};                      /* tertiary bright */
+  --color12: {{colors.inverse_primary.default.hex}};                     /* inverse primary - urgent/highlight */
+
+  /* Surface variations (dark fills) */
+  --color4: {{colors.surface_dim.default.hex}};                          /* surface dim */
+  --color5: {{colors.surface_container_low.default.hex}};                /* surface container low */
+  --color6: {{colors.surface_container.default.hex}};                    /* surface container */
+  --color13: {{colors.surface_container_high.default.hex}};              /* surface container high */
+  --color14: {{colors.surface_container_highest.default.hex}};           /* surface container highest */
+
+  /* ── Semantic UI tokens ────────────────────────────── */
+  --window-bg: var(--background);                                        /* base */
+  --surface: {{colors.surface.default.hex}};                             /* surface */
+  --overlay: {{colors.surface_container.default.hex}};                   /* overlay */
+  --module-bg: {{colors.surface_container.default.hex}};                 /* module background */
+  --border-color: {{colors.outline_variant.default.hex}};                /* outline variant */
+
+  /* Workspace states */
+  --ws-active: {{colors.primary.default.hex}};                           /* primary - active */
+  --ws-inactive: {{colors.surface_container_high.default.hex}};          /* surface container high - inactive */
+  --ws-empty: {{colors.surface_dim.default.hex}};                        /* surface dim - empty */
+  --ws-hover: {{colors.tertiary.default.hex}};                           /* tertiary - hover */
+  --ws-urgent: {{colors.error.default.hex}};                             /* error - urgent */
+
+  /* Placeholder */
+  --placeholder_text_color: {{colors.on_surface_variant.default.hex}};   /* on surface variant */
+
+  /* Additional Material You semantic colors */
+  --primary: {{colors.primary.default.hex}};
+  --primary-container: {{colors.primary_container.default.hex}};
+  --on-primary: {{colors.on_primary.default.hex}};
+  --on-primary-container: {{colors.on_primary_container.default.hex}};
+  
+  --secondary: {{colors.secondary.default.hex}};
+  --secondary-container: {{colors.secondary_container.default.hex}};
+  --on-secondary: {{colors.on_secondary.default.hex}};
+  --on-secondary-container: {{colors.on_secondary_container.default.hex}};
+  
+  --tertiary: {{colors.tertiary.default.hex}};
+  --tertiary-container: {{colors.tertiary_container.default.hex}};
+  --on-tertiary: {{colors.on_tertiary.default.hex}};
+  --on-tertiary-container: {{colors.on_tertiary_container.default.hex}};
+  
+  --error: {{colors.error.default.hex}};
+  --error-container: {{colors.error_container.default.hex}};
+  --on-error: {{colors.on_error.default.hex}};
+  --on-error-container: {{colors.on_error_container.default.hex}};
+  
+  --surface-variant: {{colors.surface_variant.default.hex}};
+  --on-surface-variant: {{colors.on_surface_variant.default.hex}};
+  --outline: {{colors.outline.default.hex}};
+  --outline-variant: {{colors.outline_variant.default.hex}};
+  
+  --inverse-surface: {{colors.inverse_surface.default.hex}};
+  --inverse-on-surface: {{colors.inverse_on_surface.default.hex}};
+  --inverse-primary: {{colors.inverse_primary.default.hex}};
+  
+  --scrim: {{colors.scrim.default.hex}};
+  --shadow: {{colors.shadow.default.hex}};
+}
