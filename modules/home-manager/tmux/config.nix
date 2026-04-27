@@ -19,6 +19,8 @@
         extraConfig = ''
           set -g @continuum-restore 'on'
           set -g @continuum-save-interval '5'
+          set -g @plugin 'sandudorogan/tmux-pane-tree'
+          set -g @tmux_pane_tree_install_agent_hooks 1
         '';
       }
     ];
@@ -63,6 +65,7 @@
 
       bind - split-window -c '#{pane_current_path}'
       bind / split-window -h -c '#{pane_current_path}'
+      bind X if-shell '[ #{session_windows} -gt 1 ]' 'kill-window' 'new-window \; kill-window -t #{window_id}:-1'
 
       # External Theme
       if-shell "test -f ~/.cache/matugen/tmux.theme" "source-file ~/.cache/matugen/tmux.theme"
