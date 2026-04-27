@@ -43,24 +43,13 @@
     wirelesstools
     khal
     libnotify
-    lutris
-    heroic
-    bottles
-    mangohud
-    goverlay
-    protontricks
-    protonup-qt
-    steam-run
-    steam
-    gamemode
-    gamescope
     mpv
     vlc
 
     # ------------------------
     # Sway / Wayland utilities
     # ------------------------
-    swww
+    awww
     swaybg
     waybar
     fuzzel
@@ -116,18 +105,11 @@
     gh-dash
     neovim
     emacs
-    neovide
-    vscode-fhs
     zed-editor
-    code-cursor
     claude-code
-    codex
-    crush
-    opencode-desktop
     ollama
-    jetbrains.webstorm
+    jetbrains-toolbox
     ghostty
-    vim
     fish
     nushell
     wget
@@ -146,7 +128,6 @@
     clang-tools
     gnumake
     # Web dev
-    vercel-pkg
     nodejs
     bun
     cypress
@@ -164,8 +145,6 @@
     gammastep
     fluent-gtk-theme
     colloid-gtk-theme
-    whitesur-icon-theme
-    # tau-hydrogen
     flameshot
 
     # ------------------------
@@ -195,13 +174,11 @@
     # ------------------------
     # Communication
     # ------------------------
-    arrpc
     vesktop
     telegram-desktop
     zapzap
     google-chrome
     brave
-    browsh
 
     ### misc
     libxcb
@@ -214,7 +191,5 @@
     # inputs.fabric-widgets.packages.${system}.run-widget
     # inputs.dms-cli.packages.${pkgs.system}.default
     (lib.hiPrio inputs.Ambxst.packages.${system}.default)
-
-    inputs.dgop.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
