@@ -2,6 +2,7 @@
 {
 
   programs = {
+
     zoxide = {
       enable = true;
     };
@@ -34,6 +35,14 @@
       bashrcExtra = ''
         export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
         export PATH="$PATH:$HOME/bin:$HOME/.bun/bin:$HOME/bun/bin"
+
+        if [[ $- == *i* ]] && [ -z "$TMUX" ]; then
+          if tmux has-session -t Main 2>/dev/null; then
+            exec tmux attach-session -t Main
+          else
+            exec tmux new-session -s Main
+          fi
+        fi
       '';
 
       shellAliases = {
@@ -42,23 +51,31 @@
         nrs = "sudo nixos-rebuild switch --flake ~/Projects/flakey/#$hostname";
       };
 
-      initExtra = ''
-        if [[ -z "$TMUX" && $- == *i* ]]; then
-          tmux attach
-        fi
-      '';
     };
 
     nushell = {
-      extraConfig = ''
-        if ($env | get -i TMUX | is-empty) {
-          try { tmux attach } catch { tmux new-session -s default }
-        }
-      '';
       shellAliases = {
         hms = "home-manager switch --flake ~/Projects/flakey/#$USER";
         nrs = "sudo nixos-rebuild switch --flake ~/Projects/flakey/#$hostname";
       };
+
+      extraConfig = ''
+        $env.config.hooks = ($env.config.hooks | upsert pre_prompt [
+          {
+            condition: {|| ($env.TMUX? | is-empty) }
+            code: '''
+              if ($env.TMUX? | is-empty) {
+                let has_session = (do { tmux has-session -t Main } | complete | get exit_code) == 0
+                if $has_session {
+                  tmux attach-session -t Main
+                } else {
+                  tmux new-session -s Main
+                }
+              }
+            '''
+          }
+        ])
+      '';
     };
 
     fish = {
@@ -96,16 +113,15 @@
           set -gx STARSHIP_CONFIG ~/.cache/matugen/starship.toml
         end
 
-        if not set -q TMUX
-         tmux attach
-        end
-        if test -d $completion_dir
-          for file in $completion_dir/*.fish
-              if test -f $file
-                  source $file
-              end
+        # Auto-attach to tmux session (only in interactive terminals, not inside tmux)
+        if status is-interactive; and not set -q TMUX
+          if tmux has-session -t Main 2>/dev/null
+            exec tmux attach-session -t Main
+          else
+            exec tmux new-session -s Main
           end
         end
+
         starship init fish | source
       '';
 
