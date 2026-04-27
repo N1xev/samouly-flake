@@ -40,6 +40,9 @@
 
     desktopManager = {
       gnome = {
+        enable = false;
+      };
+      plasma6 = {
         enable = true;
       };
     };
@@ -47,7 +50,6 @@
     displayManager = {
       sddm = {
         enable = true;
-        package = pkgs.kdePackages.sddm;
         extraPackages = with pkgs; [
           kdePackages.qtsvg
           kdePackages.qtmultimedia
@@ -58,7 +60,6 @@
     };
 
     printing.enable = true;
-
     pulseaudio.enable = false;
 
     pipewire = {
@@ -70,6 +71,11 @@
     };
   };
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   security.rtkit.enable = true;
 
   users.users.${username} = {
@@ -78,6 +84,8 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "kvm"
+      "adbusers"
     ];
   };
 
@@ -85,7 +93,45 @@
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
+        # Existing libraries
         opencode
+
+        # Athas / WebKit GUI requirements
+        webkitgtk_4_1
+        libsoup_3
+        gtk3
+        glib
+        zlib
+        libx11
+        libxext
+        libxrender
+        libxi
+        libxcursor
+        libxdamage
+        libxfixes
+        libxcomposite
+        libxrandr
+        libxcb
+        cups
+        cairo
+        pango
+        libgbm
+        expat
+        libxkbcommon
+        fuse
+        libxtst
+        freetype
+
+        # Common extras for modern TUI/GUI tools
+        dbus
+        udev
+        libuuid
+        alsa-lib
+        at-spi2-atk
+        nss
+        nspr
+        mesa
+        libGL
       ];
     };
   };

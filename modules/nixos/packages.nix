@@ -25,5 +25,8 @@
     gobject-introspection.dev
     ntfs3g
     notion-app
+    android-studio
+    android-tools
+    scrcpy
   ];
 }
