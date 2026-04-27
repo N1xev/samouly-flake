@@ -15,10 +15,6 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     vicinae = {
       url = "github:vicinaehq/vicinae";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,10 +30,6 @@
     # };
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    dgop = {
-      url = "github:AvengeMedia/dgop";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     Ambxst = {
@@ -61,8 +53,6 @@
       home-manager,
       nixpkgs,
       vicinae,
-      quickshell,
-      dgop,
       ...
     }@inputs:
     let
@@ -74,6 +64,7 @@
         inherit system;
         config = {
           allowUnfree = true;
+          android_sdk.accept_license = true;
           allowUnsupportedSystem = true;
           permittedInsecurePackages = [
             "electron-36.9.5"
@@ -118,7 +109,6 @@
           inherit
             inputs
             username
-            quickshell
             system
             ;
         };
