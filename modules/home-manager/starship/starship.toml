@@ -1,355 +1,326 @@
+# version: 1.0.0
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Inserts a blank line between shell prompts
 add_newline = true
+continuation_prompt = "[▸▹ ](dimmed white)"
 
-# Maximum time it may take to produce the prompt
-command_timeout = 3000
-
-# Note: Not supported in Powershell
-# @see: https://starship.rs/advanced-config/#enable-right-prompt
-right_format = """
-[](bg:transparent fg:#1e2939)\
-$time\
-$memory_usage\
-[](fg:#1e2939 bg:transparent)\
-"""
-
-# Left prompt. This is displayed on the left side of the terminal.
-# Colours (i.e. bg and fg) are always listed from left to right.
-format = """
-[](bg:#transparent fg:#ff637e)\
-$os\
+format = """($nix_shell$container$fill$git_metrics\n)$cmd_duration\
+$hostname\
+$localip\
+$shlvl\
+$shell\
+$env_var\
+$jobs\
+$sudo\
 $username\
-[](fg:#ff637e bg:#1e2939)\
+$character"""
+
+right_format = """
+$singularity\
+$kubernetes\
 $directory\
-${custom.pregit}\
+$vcsh\
+$fossil_branch\
 $git_branch\
+$git_commit\
 $git_state\
-$git_metrics\
 $git_status\
-${custom.postgit}\
-${custom.nogit}\
+$hg_branch\
+$pijul_channel\
+$docker_context\
 $package\
 $c\
+$cpp\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
 $elixir\
 $elm\
+$erlang\
+$fennel\
+$fortran\
 $golang\
-$gradle\
+$guix_shell\
 $haskell\
+$haxe\
+$helm\
 $java\
 $julia\
+$kotlin\
+$gradle\
+$lua\
+$maven\
+$nim\
 $nodejs\
 $bun\
-$nim\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
 $rust\
 $scala\
-$docker_context\
-$character\
-$line_break\
-[  ](bold fg:#ff637e)\
-"""
+$solidity\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$xmake\
+$zig\
+$buf\
+$conda\
+$pixi\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$crystal\
+$custom\
+$status\
+$os\
+$battery\
+$time """
 
-########################
-#   Special sections   #
-########################
+[fill]
+symbol = ' '
 
-# Exit code indicator
-[character] # The name of the module we are configuring is 'character'
-success_symbol = '[](bg:#364153 fg:#ff637e)[󱇫](bg:#ff637e fg:#030712)[](fg:#ff637e bg:transparent)'
-error_symbol = '[](bg:#364153 fg:#ffba00)[󱇫](bg:#ffba00 fg:#4d0218)[](fg:#ffba00 bg:transparent)'
-format = '$symbol '
+[character]
+format = "$symbol "
+success_symbol = "[ 󱄅](bold italic bright-yellow)"
+error_symbol = "[ ○](italic purple)"
+vimcmd_symbol = "[ ■](italic dimmed green)"
+# not supported in zsh
+vimcmd_replace_one_symbol = "◌"
+vimcmd_replace_symbol = "□"
+vimcmd_visual_symbol = "▼"
 
-# cross-platform way to check if we are in a git repo, takes 200ms
-[custom.nogit]
-when = ''' git rev-parse --git-dir ; test $? = False '''
-format = '[ ](bg:#1e2939)'
-disabled = true
+[env_var.VIMSHELL]
+format = "[$env_value]($style)"
+style = 'green italic'
 
-# Either `Administrator`, `root` or the current user's username.
-[username]
-show_always = true
-style_user = "bg:#ff637e fg:#030712"
-style_root = "bg:#ff637e fg:#030712"
-format = '[$user]($style)'
+[sudo]
+format = "[$symbol]($style)"
+style = "bold italic bright-purple"
+symbol = "⋈┈"
 disabled = false
 
+[username]
+style_user = "bright-yellow bold italic"
+style_root = "purple bold italic"
+format = "[⭘ $user]($style) "
+disabled = false
+show_always = false
 
-# Displays a symbol that represents the current operating system
-[os]
-style = "bg:#ff637e fg:#030712"
-format = '[$symbol]($style)'
-disabled = false                # This doesn't work in pwsh in Webstorm terminal.
-
-# The current directory
 [directory]
-style = "bg:#1e2939 fg:#f3f4f6"
-format = "[ $path ]($style)"
-truncation_length = 1
-truncation_symbol = "…/"
+home_symbol = "⌂"
+truncation_length = 2
+truncation_symbol = " "
+read_only = " ◈"
+use_os_path_sep = true
+style = "italic blue"
+format = '[$path]($style)[$read_only]($read_only_style)'
+repo_root_style = 'bold blue'
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) [△](bold bright-blue)'
 
-[hostname]
-ssh_symbol = ""
+[cmd_duration]
+format = "[◄ $duration ](italic white)"
 
-[memory_usage]
-symbol = "󰍛"
+[jobs]
+format = "[$symbol$number]($style) "
+style = "white"
+symbol = "[▶](blue italic)"
+
+[localip]
+ssh_only = true
+format = " ◯[$localipv4](bold magenta)"
+disabled = false
 
 [time]
 disabled = false
-time_format = "%R"         # Hour:Minute Format
-style = "bg:#1e2939"
-format = '[$time]($style)'
+format = "[ $time]($style)"
+time_format = "%R"
+utc_time_offset = "local"
+style = "italic dimmed white"
 
-#######################
-#   Version control   #
-#######################
+[battery]
+format = "[ $percentage $symbol]($style)"
+full_symbol = "█"
+charging_symbol = "[↑](italic bold green)"
+discharging_symbol = "↓"
+unknown_symbol = "░"
+empty_symbol = "▃"
 
+[[battery.display]]
+threshold = 20
+style = "italic bold red"
+
+[[battery.display]]
+threshold = 60
+style = "italic dimmed bright-purple"
+
+[[battery.display]]
+threshold = 70
+style = "italic dimmed yellow"
 
 [git_branch]
-symbol = ""
-style = "bg:#364153 fg:#99a1af"
-format = '[](fg:#1e2939 bg:#364153)[ $symbol](bg:#364153 fg:#ff637e)[ $branch ]($style)'
-
-[git_state]
-format = '[\($state( $progress_current of $progress_total)\)]($style) '
-cherry_pick = '[🍒 PICKING ](bg:#364153 fg:bold red)'
-rebase = '[ REBASING ](bg:#364153 fg:bold green)'
-merge = '[ MERGING ](bg:#364153 fg:bold yellow)'
-bisect = '[🔍 BISECTING ](bg:#364153 fg:bold blue)'
-am = '[AM](bg:#364153 fg:bold green)'
-am_or_rebase = '[AM/REBASE ](bg:#364153 fg:bold green)'
-revert = '[󰕍 REVERTING ](bg:#364153 fg:bold red)'
+format = " [$branch(:$remote_branch)]($style)"
+symbol = "[△](bold italic bright-blue)"
+style = "italic bright-blue"
+truncation_symbol = "⋯"
+truncation_length = 11
+ignore_branches = ["main", "master"]
+only_attached = true
 
 [git_metrics]
-added_style = "bg:#364153 fg:#ffba00"
-deleted_style = "bg:#364153 fg:#ff637e"
-format = '([+$added ]($added_style))([-$deleted ]($deleted_style))'
+format = '([▴$added]($added_style))([▿$deleted ]($deleted_style))'
+added_style = 'italic dimmed green'
+deleted_style = 'italic dimmed red'
+ignore_submodules = true
 disabled = false
 
 [git_status]
-style = "bg:#364153 fg:#ff637e"
-conflicted = '='                                                                          # This branch has merge conflicts.
-ahead = ''
-behind = ''
-diverged = '󱡷'
-up_to_date = ''
-untracked = '?'
-stashed = ''
-modified = ''
-staged = ''
-renamed = '»'
-deleted = '✘'
-format = '([($all_status )($ahead_behind )]($style))[🔍 BISECTING](bg:#364153 fg:#1e2939)'
+style = "bold italic bright-blue"
+format = "([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))"
+conflicted = "[◪◦](italic bright-magenta)"
+ahead = "[▴│[${count}](bold white)│](italic green)"
+behind = "[▿│[${count}](bold white)│](italic red)"
+diverged = "[◇ ▴┤[${ahead_count}](regular white)│▿┤[${behind_count}](regular white)│](italic bright-magenta)"
+untracked = "[◌◦](italic bright-yellow)"
+stashed = "[◃◈](italic white)"
+modified = "[●◦](italic yellow)"
+staged = "[▪┤[$count](bold white)│](italic bright-cyan)"
+renamed = "[◎◦](italic bright-blue)"
+deleted = "[✕](italic red)"
 
-[fossil_branch]
-symbol = ""
-
-[hg_branch]
-symbol = ""
-
-[pijul_channel]
-symbol = ""
-
-############################
-#   Contexts (canonical)   #
-############################
-
-[nodejs]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[bun]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[docker_context]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ (context) ]($style)'
-
-[package]
-format = '($style)[> $symbol$version ]($style)'
-symbol = '📦 '
-version_format = 'v${raw}'
-style = 'bold 208 bg:#1e2939'
-display_private = false
-disabled = true
-################
-#   Contexts   #
-################
-
-[aws]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[c]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[conda]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[dart]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[elixir]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[elm]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[golang]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[gradle]
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[haskell]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[haxe]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[java]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[julia]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[kotlin]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
+[deno]
+format = " [deno](italic) [ $version](green bold)"
+version_format = "${raw}"
 
 [lua]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
+format = " [lua](italic) [${symbol}${version}]($style)"
+version_format = "${raw}"
+symbol = " "
+style = "bold bright-yellow"
 
-[ocaml]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
+[nodejs]
+format = " [node](italic) [ ($version)](bold bright-green)"
+version_format = "${raw}"
+detect_files = ["package-lock.json", "yarn.lock"]
+detect_folders = ["node_modules"]
+detect_extensions = []
 
-[perl]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[php]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
+[bun]
+format = " [bun](italic) [ ($version)](bold bright-green)"
+version_format = "${raw}"
 
 [python]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
-
-[rlang]
-symbol = "󰟔"
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
+format = " [py](italic) [${symbol}${version}]($style)"
+symbol = "󰌠 "
+version_format = "${raw}"
+style = "bold bright-yellow"
 
 [ruby]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
+format = " [rb](italic) [${symbol}${version}]($style)"
+symbol = "󰴭 "
+version_format = "${raw}"
+style = "bold red"
 
 [rust]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
+format = " [rs](italic) [$symbol$version]($style)"
+symbol = " "
+version_format = "${raw}"
+style = "bold red"
 
-[scala]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
+[package]
+format = " [pkg](italic dimmed) [$symbol$version]($style)"
+version_format = "${raw}"
+symbol = "󰏖 "
+style = "dimmed yellow italic bold"
 
 [swift]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
+format = " [sw](italic) [${symbol}${version}]($style)"
+symbol = " "
+style = "bold bright-red"
+version_format = "${raw}"
 
-[zig]
-symbol = ""
-style = "bg:#1e2939 fg:#f3f4f6"
-format = '[$symbol](bg:#1e2939 fg:#ff637e)[ ($version) ]($style)'
+[aws]
+disabled = true
+format = " [aws](italic) [$symbol $profile $region]($style)"
+style = "bold blue"
+symbol = " "
 
-#############
-#   Other   #
-#############
+[buf]
+symbol = " "
+format = " [buf](italic) [$symbol $version $buf_version]($style)"
+
+[c]
+symbol = " "
+format = " [$symbol($version(-$name))]($style)"
+
+[cpp]
+symbol = " "
+format = " [$symbol($version(-$name))]($style)"
+
+[dart]
+symbol = " "
+format = " dart [$symbol($version )]($style)"
+
+[docker_context]
+symbol = " "
+format = " docker [$symbol$context]($style)"
+
+[elixir]
+symbol = " "
+format = " exs [$symbol $version OTP $otp_version ]($style)"
+
+[elm]
+symbol = " "
+format = " elm [$symbol($version )]($style)"
+
+[golang]
+symbol = "󰟓 "
+format = " go [$symbol($version )]($style)"
+
+[haskell]
+symbol = " "
+format = " hs [$symbol($version )]($style)"
+
+[java]
+symbol = " "
+format = " java [${symbol}(${version} )]($style)"
+
+[julia]
+symbol = " "
+format = " jl [$symbol($version )]($style)"
+
+[memory_usage]
+symbol = "▪▫▪ "
+format = " mem [${ram}( ${swap})]($style)"
+
+[nim]
+symbol = " "
+format = " nim [$symbol($version )]($style)"
 
 [nix_shell]
-symbol = ""
+style = 'bold italic dimmed blue'
+symbol = '✶'
+format = '[$symbol nix⎪$state⎪]($style) [$name](italic dimmed white)'
+impure_msg = '[⌽](bold dimmed red)'
+pure_msg = '[⌾](bold dimmed green)'
+unknown_msg = '[◌](bold dimmed yellow)'
 
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-AlmaLinux = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CachyOS = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-Nobara = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Void = " "
-Windows = "󰍲 "
-
+[spack]
+symbol = "◇ "
+format = " spack [$symbol$environment]($style)"

@@ -108,18 +108,9 @@
         set -gx GBM_BACKEND nvidia-drm
         set completion_dir $HOME/.config/fish/completions
 
-        # Use matugen-generated starship config if available
-        if test -f ~/.cache/matugen/starship.toml
-          set -gx STARSHIP_CONFIG ~/.cache/matugen/starship.toml
-        end
-
         # Auto-attach to tmux session (only in interactive terminals, not inside tmux)
-        if status is-interactive; and not set -q TMUX
-          if tmux has-session -t Main 2>/dev/null
-            exec tmux attach-session -t Main
-          else
-            exec tmux new-session -s Main
-          end
+        if status is-interactive; and not set -q TMUX; and not tmux has-session -t Main 2>/dev/null
+          exec tmux new-session -s Main
         end
 
         starship init fish | source
@@ -199,33 +190,7 @@
         toggle_logging = "Shift_L+F2";
       };
     };
-
-    # ax-shell = {
-    #   enable = true;
-    #   settings = {
-    #     # --- General ---
-    #     wallpapersDir = "Pictures/Wallpapers";
-    #
-    #   };
-    # };
   };
-
-  # programs.gamemode = {
-  #   enable = true;
-  #   settings = {
-  #     general = {
-  #       renice = 10;
-  #       ioprio = 7;
-  #       inhibit_screensaver = 1;
-  #       softrealtime = "auto";
-  #     };
-
-  #     gpu = {
-  #       apply_gpu_optimisations = "accept-responsibility";
-  #       gpu_device = 0;
-  #     };
-  #   };
-  # };
 
   # programs.steam = {
   #   enable = true;

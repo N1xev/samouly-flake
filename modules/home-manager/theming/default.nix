@@ -29,17 +29,9 @@ let
     input_path = "${templates}/ghostty.theme"
     output_path = "${config.xdg.configHome}/ghostty/themes/matugen"
 
-    [templates.tmux]
-    input_path = "${templates}/tmux.theme"
-    output_path = "${cacheDir}/tmux.theme"
-
-    [templates.starship]
-    input_path = "${templates}/starship.toml"
-    output_path = "${cacheDir}/starship.toml"
-
-    [templates.gtk-colors]
-    input_path = "${templates}/gtk-colors.css"
-    output_path = "${cacheDir}/gtk-colors.css"
+    # [templates.gtk-colors]
+    # input_path = "${templates}/gtk-colors.css"
+    # output_path = "${cacheDir}/gtk-colors.css"
 
     [templates.kcolorscheme]
     input_path = "${templates}/Matugen.colors"
@@ -289,22 +281,22 @@ in
     };
 
     xdg.configFile = {
-      "gtk-3.0/gtk.css" = {
-        text = ''
-          @import url("file://${cacheDir}/gtk-colors.css");
-        '';
-      };
-      "gtk-4.0/gtk.css" = {
-        text = ''
-          @import url("file://${cacheDir}/gtk-colors.css");
-        '';
-      };
-      "Kvantum/kvantum.kvconfig" = {
-        text = ''
-          [General]
-          theme=Matugen
-        '';
-      };
+      # "gtk-3.0/gtk.css" = {
+      #   text = ''
+      #     @import url("file://${cacheDir}/gtk-colors.css");
+      #   '';
+      # };
+      # "gtk-4.0/gtk.css" = {
+      #   text = ''
+      #     @import url("file://${cacheDir}/gtk-colors.css");
+      #   '';
+      # };
+      # "Kvantum/kvantum.kvconfig" = {
+      #   text = ''
+      #     [General]
+      #     theme=Matugen
+      #   '';
+      # };
       "legcord/themes/matugen/manifest.json" = {
         text = builtins.toJSON {
           name = "Matugen";
@@ -316,16 +308,7 @@ in
 
     gtk = {
       enable = true;
-      theme = {
-        name = "adw-gtk3-dark";
-        package = pkgs.adw-gtk3;
-      };
-      gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-      };
-      gtk4.extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-      };
+
     };
 
     dconf.settings = {
