@@ -15,30 +15,22 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    vicinae = {
-      url = "github:vicinaehq/vicinae";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    # fabric-widgets = {
-    #   url = "github:Fabric-Development/fabric";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    Ambxst = {
-      url = "github:Axenide/Ambxst";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sddm-stray = {
       url = "github:Bqrry4/sddm-stray";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     matugen = {
@@ -52,7 +44,6 @@
       self,
       home-manager,
       nixpkgs,
-      vicinae,
       ...
     }@inputs:
     let
@@ -73,6 +64,10 @@
         };
         overlays = [
           (import ./overlays/material-icons.nix)
+          (import ./overlays/phosphor-icons.nix)
+          (import ./overlays/pixel-sddm.nix)
+          (import ./overlays/deno-prebuilt.nix)
+          (import ./overlays/zed-prebuilt.nix)
         ];
       };
     in
@@ -103,7 +98,6 @@
           ./home-manager/home.nix
           inputs.spicetify-nix.homeManagerModules.default
           inputs.hyprland.homeManagerModules.default
-          vicinae.homeManagerModules.default
         ];
         extraSpecialArgs = {
           inherit
