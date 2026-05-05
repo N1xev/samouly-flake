@@ -9,7 +9,6 @@
     ./tmux/config.nix
     # ./widgetFrameworks.nix
     ./programs.nix
-    ./vicinae.nix
     ./theming
   ];
 

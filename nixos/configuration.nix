@@ -12,13 +12,18 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelParams = [ "i915.enable_guc=2" ];
-    # kernelPackages = pkgs.linuxPackages_6_12;
+    extraModprobeConfig = ''
+      options iwlwifi disable_11ax=1
+      options iwlwifi power_save=0
+    '';
+    kernelParams = [ "i915.enable_guc=2" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
+    networkmanager.wifi.powersave = false;
   };
 
   time.timeZone = "Africa/Cairo";
@@ -37,10 +42,9 @@
   };
 
   services = {
-
     desktopManager = {
       gnome = {
-        enable = false;
+        enable = true;
       };
       plasma6 = {
         enable = true;
@@ -55,7 +59,7 @@
           kdePackages.qtmultimedia
         ];
         wayland.enable = true;
-        theme = "sddm-stray";
+        theme = "pixel";
       };
     };
 
@@ -69,6 +73,11 @@
       pulse.enable = true;
       jack.enable = true;
     };
+
+    upower.enable = true;
+    power-profiles-daemon.enable = true;
+    flatpak.enable = true;
+    blueman.enable = true;
   };
 
   hardware.bluetooth = {
@@ -90,6 +99,25 @@
   };
 
   programs = {
+    gpu-screen-recorder = {
+      enable = true;
+    };
+    gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          renice = 10;
+          ioprio = 7;
+          inhibit_screensaver = 1;
+          softrealtime = "auto";
+        };
+  
+        gpu = {
+          apply_gpu_optimisations = "accept-responsibility";
+          gpu_device = 0;
+        };
+      };
+    };
     nix-ld = {
       enable = true;
       libraries = with pkgs; [

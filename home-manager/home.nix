@@ -49,7 +49,7 @@
   };
 
   services.gnome-keyring.enable = true;
-  services.swaync.enable = true;
+  services.swaync.enable = false;
 
   home.stateVersion = "26.05";
 }

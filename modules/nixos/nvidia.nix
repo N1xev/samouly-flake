@@ -53,7 +53,6 @@
   };
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = "powersave";
     powertop.enable = true;
   };
   services.thermald.enable = true;

@@ -46,7 +46,7 @@
   },
   "custom/omarchy": {
     "format": "<span font='omarchy'>\udb84\udd05</span>",
-    "on-click": "vicinae toggle",
+    "on-click": "rofi -show drun",
     "on-click-right": "xdg-terminal-exec",
     "tooltip-format": "Launcher\n\nSuper + D",
   },

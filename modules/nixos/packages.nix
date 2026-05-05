@@ -28,5 +28,8 @@
     android-studio
     android-tools
     scrcpy
+    pixel-sddm-theme
+    networkmanagerapplet
+    blueman
   ];
 }

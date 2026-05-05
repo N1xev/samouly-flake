@@ -43,7 +43,6 @@
     wirelesstools
     khal
     libnotify
-    mpv
     vlc
 
     # ------------------------
@@ -130,8 +129,6 @@
     # Web dev
     nodejs
     bun
-    cypress
-    playwright-test
     postgresql
 
     just
@@ -187,9 +184,54 @@
     # Inputs (flakes)
     # ------------------------
     inputs.zen-browser.packages."${system}".beta
-    # inputs.fabric-widgets.packages.${system}.default
-    # inputs.fabric-widgets.packages.${system}.run-widget
-    # inputs.dms-cli.packages.${pkgs.system}.default
-    (lib.hiPrio inputs.Ambxst.packages.${system}.default)
+    inputs.quickshell.packages."${system}".default
+
+    ### QT
+
+    # Qt6
+    qt6.qtbase
+    qt6.qtsvg
+    qt6.qttools
+    qt6.qtwayland
+    qt6.qtdeclarative
+    qt6.qtimageformats
+    kdePackages.qtmultimedia
+    kdePackages.qtshadertools
+    kdePackages.syntax-highlighting
+
+   # shell
+   sqlite
+   python3
+   ddcutil
+   roboto
+   roboto-mono
+   league-gothic
+   terminus_font
+   terminus_font_ttf
+   dejavu_fonts
+   liberation_ttf
+
+   # Nerd Fonts
+   nerd-fonts.symbols-only
+
+   # Noto family
+   noto-fonts
+   noto-fonts-color-emoji
+   noto-fonts-cjk-sans
+   noto-fonts-cjk-serif
+
+   ttf-phosphor-icons
+   zenity
+   jq
+   imagemagick
+   wtype
+   grim
+   tesseract
+   easyeffects
+   wlsunset
+   zbar
+   mpvpaper
+   kdePackages.breeze-icons
+   hicolor-icon-theme
   ];
 }

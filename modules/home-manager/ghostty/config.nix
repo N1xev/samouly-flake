@@ -3,7 +3,7 @@ _: {
     enable = true;
     enableFishIntegration = true;
     settings = {
-      font-family = "MonaspiceRn Nerd Font Mono";
+      font-family = "ComicShannsMono Nerd Font Mono";
       font-size = 12;
       font-style-bold = true;
       theme = "matugen";

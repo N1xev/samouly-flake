@@ -40,7 +40,7 @@ _: {
       # Program variables
       "$terminal" = "ghostty";
       "$fileManager" = "nautilus";
-      "$menu" = "vicinae toggle";
+      "$menu" = "rofi -show drun";
 
       # Input configuration
       input = {
@@ -79,8 +79,6 @@ _: {
       # Decoration settings (optimized for performance)
       decoration = {
         rounding = 15;
-        active_opacity = 1;
-        inactive_opacity = 1;
         shadow = {
           enabled = false;
           range = 4;
@@ -116,21 +114,20 @@ _: {
         ];
       };
 
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-      };
+      # dwindle = {
+      #   preserve_split = true;
+      # };
 
-      master = {
-        new_status = "master";
-      };
+      # master = {
+      #   new_status = "master";
+      # };
 
-      gestures = {
-        workspace_swipe_distance = 200;
-        workspace_swipe_invert = true;
-        workspace_swipe_min_speed_to_force = 30;
-        workspace_swipe_create_new = false;
-      };
+      # gestures = {
+      #   workspace_swipe_distance = 200;
+      #   workspace_swipe_invert = true;
+      #   workspace_swipe_min_speed_to_force = 30;
+      #   workspace_swipe_create_new = false;
+      # };
 
       device = {
         name = "epic-mouse-v1";
@@ -139,76 +136,72 @@ _: {
 
       "$mainMod" = "SUPER";
       bind = [
-        "$mainMod, return, exec, $terminal"
-        "$mainMod, Q, killactive"
-        "$mainMod, M, exit"
-        "$mainMod, E, exec, $fileManager"
-        "$mainMod, V, togglefloating"
-        "$mainMod, D, exec, $menu"
-        "$mainMod, P, pseudo"
-        # Focus movement
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
-        # Workspace switching
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
-        # Move to workspace
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
-        # Special workspace
-        "$mainMod, S, togglespecialworkspace, magic"
-        "$mainMod CONTROL, S, movetoworkspace, special:magic"
-        # Scroll workspaces
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
-        # Move to left/right workspaces (keyboard support)
-        "$mainMod, left, workspace, e-1"
-        "$mainMod, right, workspace, e+1"
-        # Gaming bindings
-        "$mainMod, G, exec, gamemoderun steam"
-        "$mainMod SHIFT, G, exec, nvidia-settings"
-        "$mainMod, M, exec, mangohud --dlsym glxinfo"
-        "$mainMod, Z, exec, zen-beta"
+        # "$mainMod, return, exec, $terminal"
+        # "$mainMod, Q, killactive"
+        # "$mainMod, M, exit"
+        # "$mainMod, E, exec, $fileManager"
+        # "$mainMod, V, togglefloating"
+        # "$mainMod, P, pseudo"
+        # # Focus movement
+        # "$mainMod, left, movefocus, l"
+        # "$mainMod, right, movefocus, r"
+        # "$mainMod, up, movefocus, u"
+        # "$mainMod, down, movefocus, d"
+        # # Workspace switching
+        # "$mainMod, 1, workspace, 1"
+        # "$mainMod, 2, workspace, 2"
+        # "$mainMod, 3, workspace, 3"
+        # "$mainMod, 4, workspace, 4"
+        # "$mainMod, 5, workspace, 5"
+        # "$mainMod, 6, workspace, 6"
+        # "$mainMod, 7, workspace, 7"
+        # "$mainMod, 8, workspace, 8"
+        # "$mainMod, 9, workspace, 9"
+        # "$mainMod, 0, workspace, 10"
+        # # Move to workspace
+        # "$mainMod SHIFT, 1, movetoworkspace, 1"
+        # "$mainMod SHIFT, 2, movetoworkspace, 2"
+        # "$mainMod SHIFT, 3, movetoworkspace, 3"
+        # "$mainMod SHIFT, 4, movetoworkspace, 4"
+        # "$mainMod SHIFT, 5, movetoworkspace, 5"
+        # "$mainMod SHIFT, 6, movetoworkspace, 6"
+        # "$mainMod SHIFT, 7, movetoworkspace, 7"
+        # "$mainMod SHIFT, 8, movetoworkspace, 8"
+        # "$mainMod SHIFT, 9, movetoworkspace, 9"
+        # "$mainMod SHIFT, 0, movetoworkspace, 10"
+        # # Scroll workspaces
+        # "$mainMod, mouse_down, workspace, e+1"
+        # "$mainMod, mouse_up, workspace, e-1"
+        # # Move to left/right workspaces (keyboard support)
+        # "$mainMod, left, workspace, e-1"
+        # "$mainMod, right, workspace, e+1"
+        # # Gaming bindings
+        # "$mainMod, G, exec, gamemoderun steam"
+        # "$mainMod SHIFT, G, exec, nvidia-settings"
+        # "$mainMod, M, exec, mangohud --dlsym glxinfo"
+        # "$mainMod, Z, exec, zen-beta"
 
-        # GUI Screenshot -> Copy + Save to Pictures/Screenshots
-        "$mainMod SHIFT, S, exec, flameshot gui -c -p ~/Pictures/Screenshots"
+        # # GUI Screenshot -> Copy + Save to Pictures/Screenshots
+        # "$mainMod SHIFT, S, exec, flameshot gui -c -p ~/Pictures/Screenshots"
 
-        # Fullscreen Screenshot -> Copy + Save to Pictures/Screenshots
-        ", Print, exec, flameshot full -c -p ~/Pictures/Screenshots"
+        # # Fullscreen Screenshot -> Copy + Save to Pictures/Screenshots
+        # ", Print, exec, flameshot full -c -p ~/Pictures/Screenshots"
 
-        # Active Screen (under cursor) -> Copy + Save to Pictures/Screenshots
-        "CONTROL, Print, exec, flameshot screen -c -p ~/Pictures/Screenshots"
+        # # Active Screen (under cursor) -> Copy + Save to Pictures/Screenshots
+        # "CONTROL, Print, exec, flameshot screen -c -p ~/Pictures/Screenshots"
 
-        # test notifications
-        # F12 - Short wisdom quote
-        "SUPER_ALT, F12, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Daily Wisdom' 'The journey of a thousand miles begins with a single step.' -u normal"
+        # # test notifications
+        # # F12 - Short wisdom quote
+        # "SUPER_ALT, F12, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Daily Wisdom' 'The journey of a thousand miles begins with a single step.' -u normal"
 
-        # F11 - Long motivational message
-        "SUPER_ALT, F11, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Motivation' 'Success is not final, failure is not fatal: it is the courage to continue that counts. Keep pushing forward, embrace challenges, and never stop learning. Your potential is limitless when you believe in yourself.' -u normal"
+        # # F11 - Long motivational message
+        # "SUPER_ALT, F11, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Motivation' 'Success is not final, failure is not fatal: it is the courage to continue that counts. Keep pushing forward, embrace challenges, and never stop learning. Your potential is limitless when you believe in yourself.' -u normal"
 
-        # F10 - Notification with 2 action buttons
-        "SUPER_ALT, F10, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Quick Actions' 'Choose your next move' --action='work=Start Working' --action='break=Take Break' -u normal"
+        # # F10 - Notification with 2 action buttons
+        # "SUPER_ALT, F10, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Quick Actions' 'Choose your next move' --action='work=Start Working' --action='break=Take Break' -u normal"
 
-        # F9 - Notification with multiple action buttons
-        "SUPER_ALT, F9, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Control Panel' 'What would you like to do?' --action='code=Open VSCode' --action='browser=Open Browser' --action='terminal=Open Terminal' --action='shutdown=Shutdown' -u critical"
+        # # F9 - Notification with multiple action buttons
+        # "SUPER_ALT, F9, exec, notify-send -i /home/samouly/Downloads/gophire.png 'Control Panel' 'What would you like to do?' --action='code=Open VSCode' --action='browser=Open Browser' --action='terminal=Open Terminal' --action='shutdown=Shutdown' -u critical"
       ];
 
       # Mouse bindings
@@ -238,9 +231,6 @@ _: {
       # Autostart
       exec-once = [
         "vesktop"
-        "vicinae server &"
-        "waybar &"
-        "wl-paste --watch cliphist store &"
       ];
 
       gesture = [ "3, horizontal, workspace" ];
@@ -251,5 +241,8 @@ _: {
       };
 
     };
+    extraConfig = ''
+      source = ~/.local/share/ambxst/hyprland.conf
+    '';
   };
 }
